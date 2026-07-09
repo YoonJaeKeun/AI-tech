@@ -19,7 +19,10 @@ last_reviewed: 2026-07-09
 ## 세부 노트
 
 - [Agent Loop](agent-loop.md): 추론-행동-관찰 반복 구조, ReAct, 종료 조건, 구성 요소, Reactive/Plan-and-Execute/Reflection 변형 비교.
-- [LLM 전처리와 후처리](llm-pre-post-processing.md): 매 스텝 LLM 호출을 감싸는 입력 조립(전처리)과 출력 파싱·검증(후처리), 애플리케이션 레벨과 모델 내부 레벨 구분.
+
+## 관련 주제
+
+- [LLM Pipeline (전처리·후처리)](../llm-pipeline/llm-pipeline.md): 에이전트가 매 스텝 반복 실행하는 LLM 입력·출력 처리 파이프라인. 원래 이 폴더 아래 있었으나, 에이전트에 국한되지 않는 기반 주제라 별도 주제로 분리했습니다.
 
 ## Key Concepts
 

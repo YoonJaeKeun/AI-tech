@@ -22,7 +22,10 @@ AI-tech/
     agents/
       agents.md
       agent-loop.md
-      llm-pre-post-processing.md
+    llm-pipeline/
+      llm-pipeline.md
+      preprocessing.md
+      postprocessing.md
     models.md
     clinical-healthcare.md
     evals-benchmarks.md
@@ -106,17 +109,20 @@ topics/
     <subtopic-b>.md
 ```
 
-실제 예시는 `topics/agents/`입니다.
+실제 예시는 `topics/agents/`와 `topics/llm-pipeline/`입니다.
 
 ```text
 topics/
   agents/
     agents.md
     agent-loop.md
-    llm-pre-post-processing.md
+  llm-pipeline/
+    llm-pipeline.md
+    preprocessing.md
+    postprocessing.md
 ```
 
-허브 파일(`topics/agents/agents.md`)에는 현재 판단, 목차, 대표 소스만 남기고 세부 내용은 하위 파일로 옮깁니다.
+허브 파일(`topics/agents/agents.md`, `topics/llm-pipeline/llm-pipeline.md`)에는 현재 판단, 목차, 대표 소스만 남기고 세부 내용은 하위 파일로 옮깁니다.
 
 ## 승격 후보 점검
 

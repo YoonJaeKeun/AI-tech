@@ -78,5 +78,5 @@ Claude Code, Cursor, 자율 리서치 에이전트도 본질은 이 구조의 �
 
 ## 관련
 
-- [LLM 전처리와 후처리](llm-pre-post-processing.md): 매 스텝 LLM 호출을 감싸는 입력 조립과 출력 파싱·검증.
+- [LLM Pipeline (전처리·후처리)](../llm-pipeline/llm-pipeline.md): 매 스텝 LLM 호출을 감싸는 입력 조립과 출력 파싱·검증.
 - [Agents 허브](agents.md): 현재 판단, 목차, 대표 소스.
