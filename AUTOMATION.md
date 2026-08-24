@@ -139,7 +139,15 @@ routine이 아니라 **이 파일을 고치면 됩니다**.
    손대지 않습니다. 모든 topic을 매주 갱신할 필요가 없습니다.
 7. `python scripts/check-promotion-candidates.py` 를 실행하고 출력을 확인합니다.
    후보가 있으면 파일을 옮기지 말고, 커밋 메시지 본문에 후보 목록만 남깁니다.
-8. 변경이 없으면 종료합니다. 있으면 `Update topics from YYYY-MM-DD week` 로 커밋하고 push합니다.
+8. 변경이 없으면 커밋하지 않습니다. 있으면 `Update topics from YYYY-MM-DD week` 로 커밋하고 push합니다.
+9. **마지막에 `PushNotification` 으로 요약을 반드시 보냅니다.** 변경이 없었을 때도, 실패했을 때도
+   예외 없이 보냅니다. 6줄 이내로 아래를 담습니다.
+   - 갱신한 topic 문서와 각각 무엇이 추가됐는지 (한 줄로 압축)
+   - 자료 부족으로 손대지 않은 topic
+   - 승격 후보가 있으면 그 사실
+   - 커밋 해시, 또는 변경 없음/실패 사유
+
+   예시: `AI-tech 주간: agents·evals 갱신, clinical 자료부족으로 보류 / 승격후보 없음 / commit a1b2c3d`
 
 ## 3. 월간 timeline + CURRENT.md 제안
 
@@ -150,7 +158,14 @@ routine이 아니라 **이 파일을 고치면 됩니다**.
 1. 공통 준비를 수행합니다. 대상 월을 `YYYY-MM` 으로 확정합니다.
 2. 대상 월의 `sources/YYYY-MM/` 전체와, 그달에 바뀐 `topics/` 변경 이력
    (`git log --since` / `git diff`)을 읽습니다.
-3. `templates/monthly-review.md` 로 `timeline/YYYY-MM.md` 를 작성합니다.
+3. `timeline/YYYY-MM.md` 를 작성합니다.
+
+   **이미 그 파일이 있으면 절대 덮어쓰지 않습니다.** 사람이 직접 쓴 내용일 수 있습니다.
+   이 경우 기존 내용을 그대로 두고 파일 맨 아래에
+   `## 자동 갱신 (YYYY-MM-DD)` 섹션을 새로 만들어 그 안에만 씁니다.
+   기존 섹션의 문장을 고치거나 지우지 마세요.
+
+   파일이 없을 때만 `templates/monthly-review.md` 로 새로 만듭니다.
    - `Sources Reviewed` 에는 그달의 대표 자료를 링크와 함께 나열합니다.
    - `Signals` 에는 **한 번이 아니라 반복해서** 관찰된 것만 씁니다.
    - `Radar Changes` 와 `Decisions` 는 근거가 된 source를 함께 적습니다.
@@ -171,3 +186,18 @@ routine이 아니라 **이 파일을 고치면 됩니다**.
    - 승격 후보 스크립트 출력
 7. `gh` 를 쓸 수 없으면 브랜치만 push하고, PR을 열지 못한 사실과 브랜치 이름을 결과에 남깁니다.
 8. **어떤 경우에도 `CURRENT.md` 를 main에 직접 커밋하지 않습니다.**
+9. **마지막에 `PushNotification` 으로 요약을 반드시 보냅니다.** 이 알림이 없으면 PR이 열린 것을
+   모르고 지나갑니다. 성공·실패 무관하게 보내며, 6줄 이내로 아래를 담습니다.
+   - **PR URL을 맨 앞에.** 사람이 눌러야 할 링크가 이 실행의 결과물입니다.
+   - `CURRENT.md` 에서 바꾸자고 제안한 항목 수와, 그중 Radar 이동이 있으면 그 내용
+   - 사람이 판단해야 할 열린 질문이 있으면 한 줄
+   - PR을 열지 못했으면 그 사실과 브랜치 이름
+   - timeline 커밋 해시
+
+   예시:
+   ```
+   AI-tech 2026-08 월간 리뷰
+   PR: https://github.com/YoonJaeKeun/AI-tech/pull/3
+   Radar 이동 2건 제안 (subagent orchestration: Trial→Adopt 등), 열린 질문 1건
+   timeline commit a1b2c3d
+   ```
