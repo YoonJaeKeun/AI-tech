@@ -30,6 +30,8 @@
   현재 슬러그: `models`, `agents`, `llm-pipeline`, `clinical-healthcare`, `evals-benchmarks`, `safety-governance`.
   새 주제가 필요하면 임의로 만들지 말고 해당 일일 로그의 Daily Summary에 제안만 남깁니다.
 - 근거 없는 단정을 쓰지 않습니다. 확실하지 않으면 `confidence: low` 로 표시하고 Limitations에 이유를 적습니다.
+- 원문을 열지 못한 채 검색 결과만으로 정리한 자료는 `confidence: low` + `status: unverified` 로 표시하고,
+  Limitations 첫 줄에 그 사실을 적습니다. 이런 항목은 topic 문서로 누적하지 않습니다.
 - 원문 링크가 없는 항목은 기록하지 않습니다. `source_url` 은 반드시 채웁니다.
 - 기존 내용을 덮어쓰지 않습니다. 판단이 바뀌었으면 지우지 말고 새로 덧붙이고 날짜를 남깁니다.
 
