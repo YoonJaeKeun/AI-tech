@@ -27,7 +27,8 @@
 - 새 문서는 반드시 `templates/` 의 해당 템플릿에서 시작하고 frontmatter를 채웁니다.
 - 날짜는 항상 `YYYY-MM-DD` 절대 표기를 씁니다. "지난주", "최근" 같은 상대 표현을 쓰지 않습니다.
 - source entry의 `topics` 값은 `topics/` 에 실제로 존재하는 슬러그만 씁니다.
-  현재 슬러그: `models`, `agents`, `llm-pipeline`, `clinical-healthcare`, `evals-benchmarks`, `safety-governance`.
+  현재 슬러그: `models`, `agents`, `llm-pipeline`, `clinical-healthcare`, `evals-benchmarks`,
+  `safety-governance`, `infra-cost`, `korea`, `open-source`.
   새 주제가 필요하면 임의로 만들지 말고 해당 일일 로그의 Daily Summary에 제안만 남깁니다.
 - 근거 없는 단정을 쓰지 않습니다. 확실하지 않으면 `confidence: low` 로 표시하고 Limitations에 이유를 적습니다.
 - 원문을 열지 못한 채 검색 결과만으로 정리한 자료는 `confidence: low` + `status: unverified` 로 표시하고,

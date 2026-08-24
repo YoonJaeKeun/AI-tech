@@ -26,46 +26,70 @@ routine이 아니라 **이 파일을 고치면 됩니다**.
 ### 절차
 
 1. 공통 준비를 수행합니다.
-2. 아래 축을 각각 웹 검색해 새 자료를 찾습니다. 시간 창은 두 단계입니다.
+2. 시간 창은 두 단계입니다.
    - **기본 창**: 지난 24시간(월요일 실행이면 지난 72시간).
    - **확장 창**: 지난 7일. 기본 창에 걸리지 않아도, 이번 주에 반향이 계속되고 있고
      아직 이 저장소에 기록된 적 없는 자료라면 포함합니다. 이때 `published` 는
      **원문 발행일**을 그대로 적고, `Why It Matters` 첫 줄에 왜 지금 기록하는지 한 줄로 씁니다.
    - 7일보다 오래된 자료는 기록하지 않습니다. 월간 리뷰에서 다룹니다.
-   - 모델/제품 릴리스: Anthropic, OpenAI, Google DeepMind, Meta, Mistral, Qwen, DeepSeek 공식 발표
-   - 논문: arXiv cs.CL / cs.AI / cs.SE 중 반향이 있는 것
-   - 에이전트·개발도구: coding agent, tool use, computer use, MCP, harness 관련
-   - 평가: 새 벤치마크, 기존 벤치마크 포화·오염 논쟁, METR/Terminal-Bench/SWE-bench 계열
-   - 임상·헬스케어 AI: 규제 승인, prospective trial, 배포 후 모니터링
-   - 안전·거버넌스: system card, 규제 초안, incident 보고
-3. 각 자료의 **원문**을 WebFetch로 열어 확인하려고 시도합니다.
 
-   이 실행 환경은 네트워크 egress 정책 때문에 상당수 도메인이 `EGRESS_BLOCKED` 로 막혀 있습니다.
-   프록시를 우회하려 하지 마세요. 대신 확인 수준을 그대로 기록에 남깁니다.
+3. 아래 10개 축을 각각 검색합니다. **각 축에 적힌 1차 출처를 이름으로 지정해서 찾습니다.**
+   `"Anthropic announcement August 2026"` 같은 개방형 쿼리는 SEO 애그리게이터만 물어옵니다.
+   `site:` 스코프나 출처 이름 + 제품명 + 날짜 조합을 쓰세요.
+
+   | 축 | 1차 출처 | topic |
+   |---|---|---|
+   | 모델·제품 릴리스 | anthropic.com/news, openai.com/index, deepmind.google/discover/blog, ai.meta.com/blog, mistral.ai/news, qwenlm.github.io/blog, api-docs.deepseek.com/news | `models` |
+   | 논문 | arxiv.org/list/cs.CL/recent, cs.AI/recent, cs.SE/recent, huggingface.co/papers | 내용에 따라 |
+   | 에이전트·개발도구 | blog.modelcontextprotocol.io, github.com/modelcontextprotocol, github.com/anthropics, code.claude.com/docs/changelog, cursor.com/changelog, docs.devin.ai/release-notes | `agents` |
+   | 평가 | metr.org/blog, tbench.ai, swebench.com, github.com/SWE-bench, scaleapi.github.io, epoch.ai | `evals-benchmarks` |
+   | 임상·헬스케어 AI | fda.gov (AI-enabled device list, 510k), nature.com/nm, ai.nejm.org, journals.plos.org/digitalhealth, clinicaltrials.gov | `clinical-healthcare` |
+   | 안전·거버넌스 | aisi.gov.uk, nist.gov/aisi, frontiermodelforum.org, incidentdatabase.ai, digital-strategy.ec.europa.eu (AI Act) | `safety-governance` |
+   | 비용·인프라·서빙 | 벤더 pricing 페이지와 changelog, artificialanalysis.ai, github.com/vllm-project/vllm 릴리스, github.com/ggml-org/llama.cpp 릴리스 | `infra-cost` |
+   | 국내 동향·규제 | 과기정통부, 식약처, 개인정보보호위원회 보도자료, 국가법령정보센터(인공지능 기본법 시행령), 국내 벤더 공식 발표 | `korea` |
+   | LLM 파이프라인 | RAG·구조화 출력·프롬프트 기법 관련 arXiv, 벤더 엔지니어링 블로그, 주요 프레임워크 릴리스 노트 | `llm-pipeline` |
+   | 오픈소스 생태계 | huggingface.co/blog, huggingface.co/models 트렌딩, 주요 프레임워크 GitHub 릴리스, 라이선스 변경 공지 | `open-source` |
+
+   **다음 도메인은 출처로 쓰지 않습니다.** 1차 자료를 재가공한 SEO 애그리게이터입니다.
+   releasebot.io, llmgateway.io, local-ai-zone.github.io, powerdrill.ai, blog.mean.ceo,
+   clickup.com, promptlayer.com, 그 밖에 "AI news roundup", "월간 총정리" 류 페이지.
+   검색 결과에 이런 페이지만 나오면, 거기서 **1차 출처 URL을 찾아내** 그 URL로 기록합니다.
+
+4. 각 자료에 대해 원문을 WebFetch로 열어보되, **열리지 않아도 기록합니다.**
+
+   이 실행 환경은 egress 정책으로 상당수 도메인이 `EGRESS_BLOCKED` 입니다.
+   프록시를 우회하려 하지 마세요. 원문을 못 열었다는 사실을 기록에 남기고 넘어갑니다.
 
    | 확인 수준 | `confidence` | `status` |
    |---|---|---|
-   | 원문을 열어 내용을 읽음 | `high` (내용이 명확할 때) 또는 `medium` | `read` |
+   | 원문을 열어 내용을 읽음 | `high` 또는 `medium` | `read` |
    | 원문은 못 열었지만, 서로 독립된 출처 2개 이상이 같은 사실을 말함 | `low` | `unverified` |
    | 출처가 하나뿐이거나 서로 어긋남 | 기록하지 않음 | — |
 
-   `confidence: low` 항목은 `Limitations` 첫 줄에 **원문 미확인 사실과 막힌 도메인**을 반드시 적습니다.
-   예: `- 원문 미확인. arxiv.org 가 egress 정책으로 차단되어 검색 스니펫만으로 정리했습니다.`
-   `source_url` 은 어느 경우든 **원문 URL**을 적습니다. 요약 기사 URL로 대체하지 않습니다.
-4. 선별 기준: 하루 **3~7개**. 이 중 `confidence: low` 는 **최대 3개**까지만 허용합니다.
-   원문을 연 자료를 항상 우선합니다. 아래에 해당하면 기록하지 않습니다.
+   - `source_url` 은 **언제나 1차 출처의 canonical URL** 을 적습니다. arXiv는 `abs` 링크,
+     논문은 DOI 링크, 벤더 발표는 해당 글의 permalink. 2차 보도 URL로 대체하지 않습니다.
+     원문을 못 열었어도 나중에 직접 눌러볼 수 있어야 하므로 이 항목이 가장 중요합니다.
+   - `confidence: low` 항목은 `Limitations` 첫 줄에 **원문 미확인 사실과 막힌 도메인**,
+     그리고 **무엇을 근거로 교차 확인했는지**를 적습니다.
+     예: `- 원문 미확인(arxiv.org egress 차단). Hugging Face Papers와 저자 공개 스레드로 교차 확인.`
+   - 숫자·날짜·고유명사는 2차 출처에서 옮길 때 특히 조심합니다. 서로 다르면 기록하지 않습니다.
+
+5. 선별 기준: 하루 **5~10개**. 원문을 연 자료를 우선하되, `confidence: low` 라는 이유만으로
+   버리지 않습니다. 10개 축 전부에서 억지로 채우려 하지 말고, 축이 비는 날은 비워둡니다.
+   아래에 해당하면 기록하지 않습니다.
    - 벤더 마케팅 문구뿐이고 검증 가능한 내용이 없는 것
    - 이미 기록한 자료의 재보도
    - Watchlist·기존 topic 어디에도 닿지 않는 단발성 뉴스
-5. `sources/YYYY-MM/YYYY-MM-DD.md` 를 만듭니다. `templates/daily-sources.md` 를 그대로
+   - 위 배제 도메인에서만 나오고 1차 출처를 찾지 못한 것
+6. `sources/YYYY-MM/YYYY-MM-DD.md` 를 만듭니다. `templates/daily-sources.md` 를 그대로
    복사해 시작하고, 파일이 이미 있으면 Source Entries 아래에 이어 붙입니다.
    `entry_count` frontmatter를 실제 entry 수로 갱신합니다.
-6. 각 entry의 `My Take` 에는 "이 저장소의 기존 판단과 같은가, 다른가"를 한 줄로 씁니다.
+7. 각 entry의 `My Take` 에는 "이 저장소의 기존 판단과 같은가, 다른가"를 한 줄로 씁니다.
    기존 판단과 어긋나는 자료는 특히 명확히 표시합니다. 이것이 월간 리뷰의 재료입니다.
-7. Daily Summary에 그날의 한 줄 요약과, 있다면 새 topic 슬러그 제안을 적습니다.
-8. 기록할 자료가 없으면 파일을 만들지 않고 커밋도 하지 않습니다. 다만 이 경우에도 10번은 수행합니다.
-9. `git add` 후 `Add YYYY-MM-DD source log` 로 커밋하고 main에 push합니다.
-10. **마지막에 `PushNotification` 으로 요약을 반드시 보냅니다.** 결과가 어떻든 매번 보냅니다 —
+8. Daily Summary에 그날의 한 줄 요약과, 있다면 새 topic 슬러그 제안을 적습니다.
+9. 기록할 자료가 없으면 파일을 만들지 않고 커밋도 하지 않습니다. 다만 이 경우에도 11번은 수행합니다.
+10. `git add` 후 `Add YYYY-MM-DD source log` 로 커밋하고 main에 push합니다.
+11. **마지막에 `PushNotification` 으로 요약을 반드시 보냅니다.** 결과가 어떻든 매번 보냅니다 —
     성공했을 때도, 기록할 자료가 0건일 때도, 중간에 실패했을 때도 예외 없이 보냅니다.
     실행 도중 어떤 단계에서 막히더라도, 종료 전에 그 사실을 담아 보내는 것을 잊지 마세요.
 

@@ -15,6 +15,8 @@ AI 최신 기술동향을 꾸준히 따라가기 위한 개인 스터디 저장�
 ```text
 AI-tech/
   README.md
+  CLAUDE.md
+  AUTOMATION.md
   CURRENT.md
   timeline/
     2026-07.md
@@ -30,6 +32,9 @@ AI-tech/
     clinical-healthcare.md
     evals-benchmarks.md
     safety-governance.md
+    infra-cost.md
+    korea.md
+    open-source.md
   sources/
     README.md
     2026-07/
