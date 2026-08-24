@@ -1,18 +1,19 @@
 ---
 title: "Current AI Tech View"
-last_reviewed: 2026-07-09
+last_reviewed: 2026-08-24
 review_cycle: monthly
 ---
 
 # Current AI Tech View
 
-이 문서는 2026-07-09 기준 AI 기술동향 판단을 한 장으로 유지하는 곳입니다. 자세한 근거는 `sources/`와 `timeline/`에 남기고, 여기에는 지금의 결론만 간결하게 둡니다.
+이 문서는 2026-08-24 기준 AI 기술동향 판단을 한 장으로 유지하는 곳입니다. 자세한 근거는 `sources/`와 `timeline/`에 남기고, 여기에는 지금의 결론만 간결하게 둡니다.
 
 ## Snapshot
 
 - 가장 중요하게 볼 흐름: AI는 단일 챗봇 성능 경쟁에서 도구 사용, 장기 작업, 에이전트 실행, 비용 효율, 안전 장치 경쟁으로 이동하고 있습니다.
 - 최근 판단이 바뀐 부분: 모델 자체의 지능보다 "어떤 harness와 workflow로 쓰는가"가 실제 성능 차이를 크게 만듭니다.
 - 다음 월간 리뷰 때 다시 확인할 부분: GPT-5.6 계열의 일반 공개 여부, Claude Sonnet 5의 실사용 평가, Google Antigravity/Gemini 3.5의 개발자 생태계 확산, 임상 AI의 전향적 검증 사례.
+- (2026-08-24 갱신) "harness와 workflow가 성능 차이를 만든다"는 위 판단에는 에이전트 실행 루프와 별개의 축이 하나 더 있습니다. 단일 LLM 호출에서도 무엇을 컨텍스트에 넣는가(전처리)와 출력을 얼마나 견고하게 파싱·검증하는가(후처리)가 실제 품질을 가릅니다. 근거: 2026-07-09에 신설한 `topics/llm-pipeline/llm-pipeline.md` 의 Current View.
 
 ## Tech Radar
 
@@ -23,6 +24,7 @@ review_cycle: monthly
 - 제한된 범위의 코딩 에이전트: 테스트, diff review, 사람 승인 절차가 있는 저장소 작업.
 - 소스 노트 기반 스터디 운영: `sources/`에 근거를 남기고 `CURRENT.md`에는 현재 판단만 유지.
 - Terminal-Bench, SWE-bench, METR Time Horizon 같은 workflow 중심 평가 렌즈.
+- (2026-08-24 추가) LLM 전처리·후처리 경계를 명시적으로 설계하기: 컨텍스트 조립·예산 관리·입력 가드레일과, 파싱·구조화 출력 검증·출력 가드레일을 프레임워크 기능이 아니라 아키텍처의 뼈대로 다루는 방식. 근거: `topics/llm-pipeline/llm-pipeline.md` (2026-07-09 신설) — 환각, 형식 깨짐, prompt injection, 비용 폭증 같은 실패 대부분이 이 두 경계에서 발생한다는 누적 판단.
 
 ### Trial
 
@@ -62,6 +64,7 @@ review_cycle: monthly
 - METR time horizon과 Frontier Risk Report의 후속 결과.
 - FDA AI-enabled medical devices list의 foundation model/LLM 태깅.
 - State of Clinical AI Report 후속판과 prospective trial 사례.
+- (2026-08-24 추가) MCP 사양과 거버넌스: 2026-07-28 spec의 stateless 코어 전환, Client ID Metadata Documents와 Enterprise-Managed Authorization, Agentic AI Foundation 이관 이후의 SEP 심사 체계. 근거: `sources/2026-08/2026-08-24.md#the-new-mcp-roadmap` (원문 확인, confidence high). 위 Trial의 "원격 sandbox 또는 격리된 terminal 기반 에이전트 실행" 항목이 어떤 표준 위에서 굴러갈지를 결정합니다.
 
 ## Open Questions
 
@@ -72,7 +75,11 @@ review_cycle: monthly
 - 임상 데이터/EDC 업무에서 AI가 가장 먼저 안정적으로 줄일 수 있는 병목은 무엇인가?
 - open-weight 모델의 장점인 privacy/local control과 안전 장치 제거 가능성을 어떻게 균형 잡을 것인가?
 - benchmark saturation이 심해질수록 개인 스터디에서는 어떤 평가 기준을 써야 하나?
+- (2026-08-24 추가) 매월 고정적으로 확인할 benchmark를 3개 정도로 줄일 수 있는가? 근거: `timeline/2026-07.md` Open Questions — 2026-07 리뷰에서 제기됐지만 이 문서에 옮겨지지 않았습니다.
+- (2026-08-24 추가) agent workflow를 실험한다면 어떤 local sandbox와 권한 정책을 기본값으로 둘 것인가? 근거: `timeline/2026-07.md` Open Questions. MCP의 enterprise auth 강화(`sources/2026-08/2026-08-24.md#the-new-mcp-roadmap`)로 답을 잡을 재료가 생겼습니다.
+- (2026-08-24 추가) 구조화 출력을 보장할 때 constrained decoding(모델 내부)과 검증-재시도(애플리케이션) 중 어디에서 처리하는 것이 견고한가? 근거: `topics/llm-pipeline/llm-pipeline.md` Open Questions.
 
 ## Changed Since Last Review
 
 - 초기 자료 작성: 전체 동향, 모델, 에이전트, 평가, 안전/거버넌스, 임상 AI 축의 소스 노트를 추가했습니다.
+- (2026-08-24) 2026-07 월간 리뷰 결과를 반영했습니다. Tech Radar의 기존 4개 ring은 이동 없이 그대로 두었고(2026-07 자료 안에서 이동 근거를 찾지 못함), Adopt에 LLM 전처리·후처리 설계를 1건 추가, Watchlist에 MCP 사양·거버넌스를 1건 추가, Open Questions를 3건 추가했습니다. 자세한 근거는 `timeline/2026-07.md` 의 `## 자동 갱신 (2026-08-24)` 절에 있습니다.
