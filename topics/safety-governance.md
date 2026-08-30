@@ -1,7 +1,7 @@
 ---
 title: "Safety / Governance"
 topic: safety-governance
-last_reviewed: 2026-07-09
+last_reviewed: 2026-08-30
 ---
 
 # Safety / Governance
@@ -27,6 +27,7 @@ AI 안전성, 거버넌스, 규제, 배포 통제, 책임 있는 사용을 정�
 - 고위험 action에는 human approval을 둡니다.
 - 민감정보는 public endpoint에 넣지 않습니다.
 - tool permission은 최소 권한으로 시작합니다.
+- (2026-08-30 추가) 표준 프로토콜(MCP) 자체가 Client ID Metadata Documents, Enterprise-Managed Authorization 같은 인증 기능을 내장하는 방향으로 진화하고 있어, 최소 권한 원칙을 프로토콜 레벨에서 뒷받침할 수 있는지 다음 실험에서 확인할 대상입니다. (sources/2026-08/2026-08-24.md)
 - model output은 source, version, prompt, reviewer를 함께 기록합니다.
 - post-deployment monitoring과 incident log를 처음부터 설계합니다.
 
@@ -36,6 +37,7 @@ AI 안전성, 거버넌스, 규제, 배포 통제, 책임 있는 사용을 정�
 - [METR Frontier Risk Report](../sources/2026-07/2026-07-09.md#metr-frontier-risk-report-february-to-march-2026)
 - [OpenAI GPT-5.6 Sol Preview](../sources/2026-07/2026-07-09.md#previewing-gpt-56-sol)
 - [FDA AI-Enabled Medical Devices](../sources/2026-07/2026-07-09.md#fda-ai-enabled-medical-devices)
+- [The New MCP Roadmap](../sources/2026-08/2026-08-24.md#the-new-mcp-roadmap)
 
 ## Open Questions
 

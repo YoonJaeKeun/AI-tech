@@ -1,7 +1,7 @@
 ---
 title: "Infra / Cost"
 topic: infra-cost
-last_reviewed: 2026-08-24
+last_reviewed: 2026-08-30
 ---
 
 # Infra / Cost
@@ -12,6 +12,11 @@ last_reviewed: 2026-08-24
 ## Current View
 
 - 아직 자료가 쌓이지 않았습니다. 이 축은 2026-08-24에 수집 대상으로 추가했습니다.
+- (2026-08-30 갱신) 첫 원문 확인 자료가 들어왔습니다: 오픈소스 서빙 엔진(vLLM)이 최신 open-weight 모델(Kimi-K3, DeepSeek V4)용 최적화를 계속 추가하며, 모델 가격 인하·전용 추론 칩과 나란히 "서빙 소프트웨어" 축에서도 비용 효율 경쟁이 진행 중입니다. (sources/2026-08/2026-08-27.md)
+
+## Notable Systems
+
+- vLLM v0.28.0 (2026-08-26 태그): Kimi-K3용 Decode Context Parallel·fused FlashKDA 커널·shared-expert 메모리 절감, DeepSeek V4용 end-to-end Sparse MLA, Model Runner V2의 E/P/D disaggregation·weight offloading. 원문(GitHub 릴리스 페이지)을 직접 확인했습니다. (sources/2026-08/2026-08-27.md)
 
 ## Watch Items
 
@@ -29,7 +34,7 @@ last_reviewed: 2026-08-24
 
 ## Sources
 
-- 아직 없습니다.
+- [vLLM v0.28.0 릴리스](../sources/2026-08/2026-08-27.md#vllm-v0280-릴리스-kimi-k3deepseek-v4-최적화-model-runner-v2-성숙)
 
 ## Open Questions
 

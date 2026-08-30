@@ -1,7 +1,7 @@
 ---
 title: "Agents"
 topic: agents
-last_reviewed: 2026-07-09
+last_reviewed: 2026-08-30
 ---
 
 # Agents
@@ -27,6 +27,7 @@ last_reviewed: 2026-07-09
 ## Key Concepts
 
 - Tool use: 브라우저, terminal, DB, API, 파일 시스템 같은 외부 도구 호출.
+- (2026-08-30 추가) Tool-use/agent 통신 표준의 거버넌스 재단화: MCP(도구 통합)가 Agentic AI Foundation(Linux Foundation 산하) 아래에서 stateless 코어(세션·핸드셰이크 제거, Multi Round-Trip Requests)와 Client ID Metadata Documents, Enterprise-Managed Authorization 같은 엔터프라이즈 인증 기능을 갖춰가는 흐름입니다. 개인 실험 도구에서 운영 인프라 표준으로 이동하는 신호로 봅니다. (sources/2026-08/2026-08-24.md)
 - Scaffolding: 모델을 둘러싼 planner, memory, tool router, verifier, retry loop 같은 실행 구조.
 - Subagents: 하나의 큰 일을 조사, 구현, 검증, 리뷰 같은 하위 역할로 분해하는 방식.
 - Computer use: UI나 OS 환경을 직접 조작하는 에이전트 패턴.
@@ -39,6 +40,7 @@ last_reviewed: 2026-07-09
 - remote sandbox에서 실행하고 결과물만 검토하는 격리 실행.
 - 여러 agent에게 다른 역할을 주고 최종 판단은 사람 또는 verifier가 하는 구조.
 - 권한을 단계적으로 열어주는 progressive permission 방식.
+- (2026-08-30 추가) subagent 결과가 실행 한도(예: maxTurns)에 도달해 잘렸을 때, 이를 완결된 결과와 구분해 명시적으로 "partial"로 표시하는 방식. 잘린 결과를 완결로 오인하는 실패를 줄입니다(Claude Code v2.1.246). (sources/2026-08/2026-08-26.md)
 
 ## Failure Modes
 
@@ -55,6 +57,8 @@ last_reviewed: 2026-07-09
 - [Terminal-Bench 2.0](../../sources/2026-07/2026-07-09.md#terminal-bench-20)
 - [METR Frontier Risk Report](../../sources/2026-07/2026-07-09.md#metr-frontier-risk-report-february-to-march-2026)
 - [International AI Safety Report 2026](../../sources/2026-07/2026-07-09.md#international-ai-safety-report-2026)
+- [The New MCP Roadmap](../../sources/2026-08/2026-08-24.md#the-new-mcp-roadmap)
+- [Claude Code v2.1.246](../../sources/2026-08/2026-08-26.md#claude-code-v21246-auto-mode-확장-subagent-결과-처리-개선)
 
 ## Open Questions
 
