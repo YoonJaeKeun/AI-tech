@@ -1,7 +1,7 @@
 ---
 title: "Evals / Benchmarks"
 topic: evals-benchmarks
-last_reviewed: 2026-07-09
+last_reviewed: 2026-09-06
 ---
 
 # Evals / Benchmarks
@@ -43,3 +43,4 @@ AI 모델과 에이전트의 성능을 어떻게 측정할지 정리하는 주�
 - 개인 스터디에서 매달 고정으로 확인할 benchmark는 무엇으로 제한할 것인가?
 - 임상 데이터/EDC 업무에 맞는 작은 내부 benchmark를 만들 수 있는가?
 - benchmark saturation 이후에는 어떤 qualitative evidence를 함께 기록해야 하는가?
+- (2026-09-06 확인 필요) Terminal-Bench가 3.0(2026-08-24, 태스크셋 개편)에 이어 4.0(2026-08-27, 자원 보정 위주 유지보수 릴리스)까지 나왔다는 보도가 있으나 둘 다 원문 미확인(confidence: low)입니다. 원문이 확인되면 Benchmarks To Track의 Terminal-Bench 버전 표기를 갱신할 후보입니다. (sources/2026-08/2026-08-31.md, sources/2026-09/2026-09-03.md)

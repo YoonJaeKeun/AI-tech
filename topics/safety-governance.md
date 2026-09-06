@@ -1,7 +1,7 @@
 ---
 title: "Safety / Governance"
 topic: safety-governance
-last_reviewed: 2026-08-30
+last_reviewed: 2026-09-06
 ---
 
 # Safety / Governance
@@ -44,3 +44,4 @@ AI 안전성, 거버넌스, 규제, 배포 통제, 책임 있는 사용을 정�
 - 개인/팀 수준에서 최소한의 AI incident log는 어떤 형태가 좋은가?
 - agent tool permission 정책을 업무별로 어떻게 표준화할 것인가?
 - open-weight 모델을 사용할 때 safety update와 model provenance를 어떻게 추적할 것인가?
+- (2026-09-06 확인 필요) 이번 주 Aurora/Cursor 랜섬웨어 침해 사례와 METR 자체 API 키 노출 사고가 연달아 보도됐으나 둘 다 원문 미확인(confidence: low)입니다. 원문이 확인되면 Risk Areas·Operating Principles에 "에이전트 안전 거부의 취약한 지속성", "테스트/연구 환경의 권한 격리" 항목으로 반영할 후보입니다. (sources/2026-09/2026-09-02.md, sources/2026-09/2026-09-03.md)

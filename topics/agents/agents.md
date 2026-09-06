@@ -1,7 +1,7 @@
 ---
 title: "Agents"
 topic: agents
-last_reviewed: 2026-08-30
+last_reviewed: 2026-09-06
 ---
 
 # Agents
@@ -32,6 +32,8 @@ last_reviewed: 2026-08-30
 - Subagents: 하나의 큰 일을 조사, 구현, 검증, 리뷰 같은 하위 역할로 분해하는 방식.
 - Computer use: UI나 OS 환경을 직접 조작하는 에이전트 패턴.
 - Human-in-the-loop: 고위험 action 전에 사람이 승인하거나 review하는 통제 방식.
+- (2026-09-06 추가) Auto mode의 Containment Escape 규칙: 클라우드 메타데이터 자격증명 조회, egress 우회, 테넌트 간 접근 시도가 환경에서 명시적으로 허용하지 않는 한 더 이상 자동 승인되지 않습니다. 작업 디렉터리 밖 파일을 처음 읽을 때도 auto mode에서 1회성 확인을 거치도록 바뀌었습니다(Claude Code v2.1.257). Open Questions의 "local coding agent의 기본 sandbox, network, credential 정책" 질문에 하네스 쪽에서 나온 구체적인 답 하나입니다. (sources/2026-09/2026-09-03.md)
+- (2026-09-06 추가) 조직이 모든 사용자에게 HTTP/SSE MCP 서버를 배포하는 `managedMcpServers` 관리 설정과, 무인 headless 실행에서 프롬프트가 필요한 작업을 자동 거부하는 `--permission-prompts none` 옵션(Claude Code v2.1.259). 하네스가 조직 단위 관리·무인 실행 통제 쪽으로 계속 이동하고 있음을 보여줍니다. (sources/2026-09/2026-09-04.md)
 
 ## Patterns
 
@@ -41,6 +43,7 @@ last_reviewed: 2026-08-30
 - 여러 agent에게 다른 역할을 주고 최종 판단은 사람 또는 verifier가 하는 구조.
 - 권한을 단계적으로 열어주는 progressive permission 방식.
 - (2026-08-30 추가) subagent 결과가 실행 한도(예: maxTurns)에 도달해 잘렸을 때, 이를 완결된 결과와 구분해 명시적으로 "partial"로 표시하는 방식. 잘린 결과를 완결로 오인하는 실패를 줄입니다(Claude Code v2.1.246). (sources/2026-08/2026-08-26.md)
+- (2026-09-06 추가) foreground subagent의 tool call을 Remote Control 클라이언트로 실시간 스트리밍해, 원격에서 실행 중인 subagent의 행동을 그대로 관찰하는 방식(Claude Code v2.1.251). Trial의 "원격 sandbox 또는 격리된 terminal 기반 에이전트 실행"을 실제로 감시 가능하게 만드는 진전입니다. (sources/2026-08/2026-08-31.md)
 
 ## Failure Modes
 
@@ -59,6 +62,9 @@ last_reviewed: 2026-08-30
 - [International AI Safety Report 2026](../../sources/2026-07/2026-07-09.md#international-ai-safety-report-2026)
 - [The New MCP Roadmap](../../sources/2026-08/2026-08-24.md#the-new-mcp-roadmap)
 - [Claude Code v2.1.246](../../sources/2026-08/2026-08-26.md#claude-code-v21246-auto-mode-확장-subagent-결과-처리-개선)
+- [Claude Code v2.1.251](../../sources/2026-08/2026-08-31.md#claude-code-v21251-premodelswitchpostmodelswitch-훅-remote-control-서브에이전트-실시간-스트리밍)
+- [Claude Code v2.1.257/v2.1.258](../../sources/2026-09/2026-09-03.md#claude-code-v21257v21258--fable-51-기본-모델-전환-auto-mode-containment-escape-규칙-추가)
+- [Claude Code v2.1.259](../../sources/2026-09/2026-09-04.md#claude-code-v21259--managedmcpservers---permission-prompts-none-동시-세션-설정-덮어쓰기-버그-수정)
 
 ## Open Questions
 
