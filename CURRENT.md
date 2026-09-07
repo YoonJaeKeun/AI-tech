@@ -1,6 +1,6 @@
 ---
 title: "Current AI Tech View"
-last_reviewed: 2026-08-24
+last_reviewed: 2026-09-07
 review_cycle: monthly
 ---
 
@@ -58,6 +58,7 @@ review_cycle: monthly
 계속 지켜볼 제품, 논문, 벤치마크, 규제, 오픈소스 프로젝트입니다.
 
 - OpenAI GPT-5.6 Sol/Terra/Luna preview의 일반 공개와 system card.
+- (2026-09-07 추가) OpenAI GPT-6 Astra(2026-09-03 발표): Preparedness Framework 기준 사이버보안 역량이 처음 "Critical" 등급에 도달했다고 보도됨. 위 GPT-5.6 라인업의 사실상 후속 세대. 원문 미확인(openai.com egress 차단), 복수 매체 교차확인 기반이라 `confidence: low`. 근거: `sources/2026-09/2026-09-07.md#openai-gpt-6-astra-출시--사이버보안-preparedness-framework-critical-등급-첫-도달`.
 - Anthropic Claude Sonnet 5의 실제 agentic coding 성능과 비용 효율.
 - Google Gemini 3.5 및 Antigravity/Managed Agents 확산.
 - Terminal-Bench 3.0, SWE-Bench Pro, OSWorld-Verified, BrowseComp.
@@ -78,8 +79,11 @@ review_cycle: monthly
 - (2026-08-24 추가) 매월 고정적으로 확인할 benchmark를 3개 정도로 줄일 수 있는가? 근거: `timeline/2026-07.md` Open Questions — 2026-07 리뷰에서 제기됐지만 이 문서에 옮겨지지 않았습니다.
 - (2026-08-24 추가) agent workflow를 실험한다면 어떤 local sandbox와 권한 정책을 기본값으로 둘 것인가? 근거: `timeline/2026-07.md` Open Questions. MCP의 enterprise auth 강화(`sources/2026-08/2026-08-24.md#the-new-mcp-roadmap`)로 답을 잡을 재료가 생겼습니다.
 - (2026-08-24 추가) 구조화 출력을 보장할 때 constrained decoding(모델 내부)과 검증-재시도(애플리케이션) 중 어디에서 처리하는 것이 견고한가? 근거: `topics/llm-pipeline/llm-pipeline.md` Open Questions.
+- (2026-09-07 추가) "Critical" 등급(Preparedness Framework 기준) 모델의 공개 배포에서 실제로 어떤 접근 제한이 작동하는가? 근거: `sources/2026-09/2026-09-07.md` GPT-6 Astra 항목 — 원문 미확인 상태라 이번 자료만으로는 답을 확인하지 못했습니다.
+- (2026-09-07 추가) 저비용 모델의 출시 주기가 빨라질수록(72시간 내 3사 릴리스 사례) "어떤 모델을 언제 쓸지 결정하는 비용" 자체가 커지는 것은 아닌가? 근거: `sources/2026-09/2026-09-07.md` Gemini 3.8 Flash 항목.
 
 ## Changed Since Last Review
 
 - 초기 자료 작성: 전체 동향, 모델, 에이전트, 평가, 안전/거버넌스, 임상 AI 축의 소스 노트를 추가했습니다.
 - (2026-08-24) 2026-07 월간 리뷰 결과를 반영했습니다. Tech Radar의 기존 4개 ring은 이동 없이 그대로 두었고(2026-07 자료 안에서 이동 근거를 찾지 못함), Adopt에 LLM 전처리·후처리 설계를 1건 추가, Watchlist에 MCP 사양·거버넌스를 1건 추가, Open Questions를 3건 추가했습니다. 자세한 근거는 `timeline/2026-07.md` 의 `## 자동 갱신 (2026-08-24)` 절에 있습니다.
+- (2026-09-07) 지난 1주(2026-08-31~2026-09-07) 소스 노트를 반영했습니다. 72시간 안에 OpenAI/Google/Meta가 연달아 프론티어 모델을 출시한 점을 Watchlist에 1건 추가했고, Open Questions를 2건 추가했습니다. 이번 주 신규 항목 다수가 egress 차단으로 원문 미확인 상태(`status: unverified`, `confidence: low`)라 Tech Radar ring 이동은 하지 않았습니다. 자세한 근거는 `sources/2026-09/2026-09-07.md` 참고.
