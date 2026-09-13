@@ -1,7 +1,7 @@
 ---
 title: "Agents"
 topic: agents
-last_reviewed: 2026-09-06
+last_reviewed: 2026-09-13
 ---
 
 # Agents
@@ -34,6 +34,10 @@ last_reviewed: 2026-09-06
 - Human-in-the-loop: 고위험 action 전에 사람이 승인하거나 review하는 통제 방식.
 - (2026-09-06 추가) Auto mode의 Containment Escape 규칙: 클라우드 메타데이터 자격증명 조회, egress 우회, 테넌트 간 접근 시도가 환경에서 명시적으로 허용하지 않는 한 더 이상 자동 승인되지 않습니다. 작업 디렉터리 밖 파일을 처음 읽을 때도 auto mode에서 1회성 확인을 거치도록 바뀌었습니다(Claude Code v2.1.257). Open Questions의 "local coding agent의 기본 sandbox, network, credential 정책" 질문에 하네스 쪽에서 나온 구체적인 답 하나입니다. (sources/2026-09/2026-09-03.md)
 - (2026-09-06 추가) 조직이 모든 사용자에게 HTTP/SSE MCP 서버를 배포하는 `managedMcpServers` 관리 설정과, 무인 headless 실행에서 프롬프트가 필요한 작업을 자동 거부하는 `--permission-prompts none` 옵션(Claude Code v2.1.259). 하네스가 조직 단위 관리·무인 실행 통제 쪽으로 계속 이동하고 있음을 보여줍니다. (sources/2026-09/2026-09-04.md)
+- (2026-09-13 추가) 하네스 자기진단 기능 확장: 사용하지 않는 skill과 그 컨텍스트 비용을 진단하는 `/skill-doctor`, `/status`·`claude doctor`의 조직 정책 로드 실패 원인 표시, `/cost`·상태줄의 prompt cache miss 원인 표시(Claude Code v2.1.260/261). Adopt의 "LLM 전처리·후처리 경계를 명시적으로 설계하기" 판단과 맞닿아 있습니다 — 컨텍스트에 무엇이 들어가는지를 하네스 스스로 진단하게 만드는 기능입니다. (sources/2026-09/2026-09-07.md)
+- (2026-09-13 추가) 실행 비용·컨텍스트 구성을 명시적으로 통제하는 옵션 확대: Bedrock/Vertex/Foundry 전반의 모델 effort 수준을 상한하는 `maxEffortLevel`, 매 요청마다 시스템 프롬프트를 새로 렌더링하는 `--system-prompt-snapshot off`(Claude Code v2.1.267). (sources/2026-09/2026-09-10.md)
+- (2026-09-13 추가) Artifact 퍼블리시 시 커넥터가 실제로 노출하지 않는 도구 이름을 그냥 받아들이던 문제를 고쳐, 선언된 도구가 하나도 없으면 퍼블리시를 거부하고 일부만 없으면 경고하도록 바뀌었습니다(Claude Code v2.1.265). "출력을 얼마나 견고하게 파싱·검증하는가(후처리)" 판단과 정확히 맞닿는 사례로, 실행 전에 선언과 실제 능력의 불일치를 잡아내는 가드레일입니다. (sources/2026-09/2026-09-09.md)
+- (2026-09-13 추가) 반복적으로 드러나는 경로·권한 검사 우회 패턴: 플러그인 경로에 백슬래시를 넣어 macOS·Linux의 symlink containment 검사를 우회하는 취약점(v2.1.265)에 이어, symlink된 디렉터리(`/etc`, `/tmp`, `/var`, `/bin` 등)의 deny/ask 권한 규칙이 실제 경로로 우회되는 문제와 마켓플레이스 항목 경로의 백슬래시 우회(v2.1.267/268)가 잇따라 발견·수정됐습니다. 하네스의 실행 격리를 신뢰할 때, 경로 정규화 관련 우회는 한 번 고쳐도 다른 진입점에서 반복해서 나타날 수 있다는 점을 보여줍니다. (sources/2026-09/2026-09-09.md, sources/2026-09/2026-09-11.md)
 
 ## Patterns
 
@@ -65,6 +69,10 @@ last_reviewed: 2026-09-06
 - [Claude Code v2.1.251](../../sources/2026-08/2026-08-31.md#claude-code-v21251-premodelswitchpostmodelswitch-훅-remote-control-서브에이전트-실시간-스트리밍)
 - [Claude Code v2.1.257/v2.1.258](../../sources/2026-09/2026-09-03.md#claude-code-v21257v21258--fable-51-기본-모델-전환-auto-mode-containment-escape-규칙-추가)
 - [Claude Code v2.1.259](../../sources/2026-09/2026-09-04.md#claude-code-v21259--managedmcpservers---permission-prompts-none-동시-세션-설정-덮어쓰기-버그-수정)
+- [Claude Code v2.1.260/261/263](../../sources/2026-09/2026-09-07.md#claude-code-v21260261263--diff-전체화면-패널-skill-doctor-조직-정책-가시성)
+- [Claude Code v2.1.265](../../sources/2026-09/2026-09-09.md#anthropic-claude-code-v21265-배포--플러그인-디렉터리-동적-로드-아티팩트-퍼블리시-도구-검증-prompt-cache-재사용-버그-다수-수정)
+- [Claude Code v2.1.266/267](../../sources/2026-09/2026-09-10.md#anthropic-claude-code-v21266267-배포--maxeffortlevel-설정-시스템-프롬프트-스냅샷-무효화-옵션-prompt-cache-안정화-다수)
+- [Claude Code v2.1.268](../../sources/2026-09/2026-09-11.md#anthropic-claude-code-v21268-배포--webfetch-무한대기-수정-서드파티-호환-엔드포인트-http-400-회귀-수정-symlink-권한-규칙플러그인-토큰-노출-등-보안-수정-다수)
 
 ## Open Questions
 
