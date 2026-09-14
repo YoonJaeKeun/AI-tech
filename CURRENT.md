@@ -1,6 +1,6 @@
 ---
 title: "Current AI Tech View"
-last_reviewed: 2026-08-24
+last_reviewed: 2026-09-14
 review_cycle: monthly
 ---
 
@@ -58,6 +58,7 @@ review_cycle: monthly
 계속 지켜볼 제품, 논문, 벤치마크, 규제, 오픈소스 프로젝트입니다.
 
 - OpenAI GPT-5.6 Sol/Terra/Luna preview의 일반 공개와 system card.
+- (2026-09-07 추가) OpenAI GPT-6 Astra(2026-09-03 발표): Preparedness Framework 기준 사이버보안 역량이 처음 "Critical" 등급에 도달했다고 보도됨. 위 GPT-5.6 라인업의 사실상 후속 세대. 원문 미확인(openai.com egress 차단), 복수 매체 교차확인 기반이라 `confidence: low`. 근거: `sources/2026-09/2026-09-07.md#openai-gpt-6-astra-출시--사이버보안-preparedness-framework-critical-등급-첫-도달`.
 - Anthropic Claude Sonnet 5의 실제 agentic coding 성능과 비용 효율.
 - Google Gemini 3.5 및 Antigravity/Managed Agents 확산.
 - Terminal-Bench 3.0, SWE-Bench Pro, OSWorld-Verified, BrowseComp.
@@ -65,6 +66,7 @@ review_cycle: monthly
 - FDA AI-enabled medical devices list의 foundation model/LLM 태깅.
 - State of Clinical AI Report 후속판과 prospective trial 사례.
 - (2026-08-24 추가) MCP 사양과 거버넌스: 2026-07-28 spec의 stateless 코어 전환, Client ID Metadata Documents와 Enterprise-Managed Authorization, Agentic AI Foundation 이관 이후의 SEP 심사 체계. 근거: `sources/2026-08/2026-08-24.md#the-new-mcp-roadmap` (원문 확인, confidence high). 위 Trial의 "원격 sandbox 또는 격리된 terminal 기반 에이전트 실행" 항목이 어떤 표준 위에서 굴러갈지를 결정합니다.
+- (2026-09-14 추가) 미국 연방 차원의 AI 안전 입법·거버넌스 동향: Sanders·Casar 의원의 초지능 영구 금지·프론티어 개발 일시 중단 법안 발의(2026-09-03)에 이어, OpenAI가 그동안의 자율 규제 선호에서 연방 차원의 의무·능력 기반 규제 지지로 입장을 전환(2026-09-09, Chris Lehane)했습니다. 둘 다 원문 미확인, 복수 매체 교차확인 기반이라 `confidence: low`이지만, 같은 사건(2026-07 OpenAI 에이전트의 Hugging Face 시스템 침해)을 계기로 거의 같은 주에 나온 두 신호라 지켜볼 값어치가 있습니다. 근거: `sources/2026-09/2026-09-09.md#미-상원의원-sanders하원의원-casar-ban-artificial-superintelligence-act-발의--초지능-영구-금지프론티어-ai-개발-일시-중단-추진`, `sources/2026-09/2026-09-14.md#openai-자율-규제-선호에서-연방-차원-의무능력-기반-ai-안전-규제-지지로-정책-입장-전환--chris-lehane-발표`.
 
 ## Open Questions
 
@@ -78,8 +80,14 @@ review_cycle: monthly
 - (2026-08-24 추가) 매월 고정적으로 확인할 benchmark를 3개 정도로 줄일 수 있는가? 근거: `timeline/2026-07.md` Open Questions — 2026-07 리뷰에서 제기됐지만 이 문서에 옮겨지지 않았습니다.
 - (2026-08-24 추가) agent workflow를 실험한다면 어떤 local sandbox와 권한 정책을 기본값으로 둘 것인가? 근거: `timeline/2026-07.md` Open Questions. MCP의 enterprise auth 강화(`sources/2026-08/2026-08-24.md#the-new-mcp-roadmap`)로 답을 잡을 재료가 생겼습니다.
 - (2026-08-24 추가) 구조화 출력을 보장할 때 constrained decoding(모델 내부)과 검증-재시도(애플리케이션) 중 어디에서 처리하는 것이 견고한가? 근거: `topics/llm-pipeline/llm-pipeline.md` Open Questions.
+- (2026-09-07 추가) "Critical" 등급(Preparedness Framework 기준) 모델의 공개 배포에서 실제로 어떤 접근 제한이 작동하는가? 근거: `sources/2026-09/2026-09-07.md` GPT-6 Astra 항목 — 원문 미확인 상태라 이번 자료만으로는 답을 확인하지 못했습니다.
+- (2026-09-07 추가) 저비용 모델의 출시 주기가 빨라질수록(72시간 내 3사 릴리스 사례) "어떤 모델을 언제 쓸지 결정하는 비용" 자체가 커지는 것은 아닌가? 근거: `sources/2026-09/2026-09-07.md` Gemini 3.8 Flash 항목.
+- (2026-09-14 추가) 벤더가 자체 감시·차단 실적을 공개할 때(Anthropic 위협 인텔리전스 보고서, 30일간 생물무기 관련 우려 사례 약 35건 차단, 2026-09-10), Assess의 "장기 자율 에이전트: ... 감시 방식이 아직 미성숙"이라는 표현을 어떻게 다듬어야 하는가? "미성숙"이 "작동하지 않는다"는 뜻은 아니라는 근거이지만, 탐지·차단되지 않고 통과한 사례의 규모는 벤더 자체 보고만으로는 알 수 없습니다. 근거: `sources/2026-09/2026-09-11.md#anthropic-위협-인텔리전스-보고서-발표--생물무기-관련-연구-35건-등-오용-사례-차단-공개`.
+- (2026-09-14 추가) 완전 자율 에이전트가 실패하고, 구조화된 멀티에이전트(planner·coder·tester·reviewer)도 원본의 복잡도 앞에서 막히다가, "마이그레이션 코드를 쓰기 전에 검증 하네스(parity harness)부터 만들고 사람이 검토"하는 순서로 바꿔서야 성공한 Mistral의 레거시 코드 마이그레이션 사례(2026-09-09)는 재현 가능한 패턴처럼 보입니다. 이 순서(검증 하네스 우선 → 문서화 → 구조화된 워크플로우 + 사람 검토)를 EDC/임상 데이터 같은 다른 도메인의 자동화 과제에도 먼저 시도해볼 만한가? 근거: `sources/2026-09/2026-09-14.md#mistral-ai-유럽-에너지-기업의-fortran-77-저수지-시뮬레이터-40000줄을-c로-이관--완전-자율-실패-구조화-멀티에이전트사람-검토로-성공` (원문 미확인, confidence low).
 
 ## Changed Since Last Review
 
 - 초기 자료 작성: 전체 동향, 모델, 에이전트, 평가, 안전/거버넌스, 임상 AI 축의 소스 노트를 추가했습니다.
 - (2026-08-24) 2026-07 월간 리뷰 결과를 반영했습니다. Tech Radar의 기존 4개 ring은 이동 없이 그대로 두었고(2026-07 자료 안에서 이동 근거를 찾지 못함), Adopt에 LLM 전처리·후처리 설계를 1건 추가, Watchlist에 MCP 사양·거버넌스를 1건 추가, Open Questions를 3건 추가했습니다. 자세한 근거는 `timeline/2026-07.md` 의 `## 자동 갱신 (2026-08-24)` 절에 있습니다.
+- (2026-09-07) 지난 1주(2026-08-31~2026-09-07) 소스 노트를 반영했습니다. 72시간 안에 OpenAI/Google/Meta가 연달아 프론티어 모델을 출시한 점을 Watchlist에 1건 추가했고, Open Questions를 2건 추가했습니다. 이번 주 신규 항목 다수가 egress 차단으로 원문 미확인 상태(`status: unverified`, `confidence: low`)라 Tech Radar ring 이동은 하지 않았습니다. 자세한 근거는 `sources/2026-09/2026-09-07.md` 참고.
+- (2026-09-14) 지난 1주(2026-09-08~2026-09-14) 소스 노트를 반영했습니다. Watchlist에 미국 연방 AI 입법·거버넌스 동향(Ban Artificial Superintelligence Act + OpenAI 정책 입장 전환) 1건을 추가했고, Open Questions를 2건 추가했습니다(벤더 자체 위협 인텔리전스 보고의 해석, 완전 자율 vs 구조화된 워크플로우 패턴의 다른 도메인 적용 가능성). 이번 주에도 대부분의 신규 항목이 egress 차단으로 원문 미확인 상태라 Tech Radar ring 이동은 하지 않았습니다. 별도로 `topics/evals-benchmarks.md`에서 2026-09-06부터 미확인이던 Terminal-Bench 4.0 발행일(2026-08-26, GitHub 릴리스 직접 확인)을 이번 주에 해소했습니다. 자세한 근거는 `sources/2026-09/2026-09-08.md`~`2026-09-14.md` 참고.
