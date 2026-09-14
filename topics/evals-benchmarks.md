@@ -1,7 +1,7 @@
 ---
 title: "Evals / Benchmarks"
 topic: evals-benchmarks
-last_reviewed: 2026-09-06
+last_reviewed: 2026-09-14
 ---
 
 # Evals / Benchmarks
@@ -17,7 +17,7 @@ AI 모델과 에이전트의 성능을 어떻게 측정할지 정리하는 주�
 ## Benchmarks To Track
 
 - SWE-bench Verified: 실제 GitHub issue 해결 능력을 보는 coding benchmark입니다.
-- Terminal-Bench: terminal 환경에서 command-line workflow를 수행하는 agent benchmark입니다.
+- Terminal-Bench: terminal 환경에서 command-line workflow를 수행하는 agent benchmark입니다. 최신 버전은 4.0(GitHub 릴리스 태그 기준 2026-08-26 발행, confidence: high). 자세한 경위는 Open Questions 참고.
 - METR Time Horizon: AI agent가 어느 정도 길이의 소프트웨어 작업을 성공적으로 수행하는지 측정합니다.
 - OSWorld / OSWorld-Verified: 컴퓨터 사용과 GUI workflow 수행력을 보는 평가입니다.
 - BrowseComp: agentic search와 정보 탐색 성능을 보는 평가입니다.
@@ -44,3 +44,4 @@ AI 모델과 에이전트의 성능을 어떻게 측정할지 정리하는 주�
 - 임상 데이터/EDC 업무에 맞는 작은 내부 benchmark를 만들 수 있는가?
 - benchmark saturation 이후에는 어떤 qualitative evidence를 함께 기록해야 하는가?
 - (2026-09-06 확인 필요) Terminal-Bench가 3.0(2026-08-24, 태스크셋 개편)에 이어 4.0(2026-08-27, 자원 보정 위주 유지보수 릴리스)까지 나왔다는 보도가 있으나 둘 다 원문 미확인(confidence: low)입니다. 원문이 확인되면 Benchmarks To Track의 Terminal-Bench 버전 표기를 갱신할 후보입니다. (sources/2026-08/2026-08-31.md, sources/2026-09/2026-09-03.md)
+  - (2026-09-14 해소) GitHub 릴리스 페이지(harbor-framework/terminal-bench)를 직접 열어 확인한 결과, v4.0.0의 공식 발행 시각은 2026-08-26 04:48 UTC이며 task 8개 제거·19개 수정을 포함한 태스크셋 개편입니다(confidence: high, 직접 확인). 2026-09-09/11 로그에서 반복 지적된 tbench.ai 블로그 보도(2026-09-01~02)와의 날짜 불일치는, canonical 발행일을 GitHub 릴리스 태그 기준 2026-08-26으로 보는 것으로 해소합니다. tbench.ai 블로그 글은 태그 발행보다 늦게 나온 announcement로 추정됩니다. (https://github.com/harbor-framework/terminal-bench/releases/tag/v4.0.0)
