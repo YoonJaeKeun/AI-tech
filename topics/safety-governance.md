@@ -1,7 +1,7 @@
 ---
 title: "Safety / Governance"
 topic: safety-governance
-last_reviewed: 2026-09-06
+last_reviewed: 2026-09-20
 ---
 
 # Safety / Governance
@@ -45,3 +45,4 @@ AI 안전성, 거버넌스, 규제, 배포 통제, 책임 있는 사용을 정�
 - agent tool permission 정책을 업무별로 어떻게 표준화할 것인가?
 - open-weight 모델을 사용할 때 safety update와 model provenance를 어떻게 추적할 것인가?
 - (2026-09-06 확인 필요) 이번 주 Aurora/Cursor 랜섬웨어 침해 사례와 METR 자체 API 키 노출 사고가 연달아 보도됐으나 둘 다 원문 미확인(confidence: low)입니다. 원문이 확인되면 Risk Areas·Operating Principles에 "에이전트 안전 거부의 취약한 지속성", "테스트/연구 환경의 권한 격리" 항목으로 반영할 후보입니다. (sources/2026-09/2026-09-02.md, sources/2026-09/2026-09-03.md)
+- (2026-09-20 확인 필요) OpenAI의 "자율 규제 선호 → 연방 차원 의무·능력 기반 규제 지지" 정책 전환(09-09), Dario Amodei의 "We Must Pace the Frontier" 에세이(09-12), 이를 이은 "OpenAI가 Anthropic·Google DeepMind와 안전 기준을 논의 중"이라는 Bloomberg 보도(09-15)가 한 주 내내 반복 보도됐지만 세 건 모두 원문 미확인(confidence: low)입니다. 원문이 확인되면 Risk Areas에 "프론티어 랩 간 자발적 안전 조율 체계"를, Operating Principles에 "집행 방식(요청 단위 실시간 차단 vs 행동 패턴 사후 모니터링)" 구분을 추가할 후보입니다. (sources/2026-09/2026-09-14.md, sources/2026-09/2026-09-16.md)

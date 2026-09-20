@@ -1,7 +1,7 @@
 ---
 title: "Agents"
 topic: agents
-last_reviewed: 2026-09-13
+last_reviewed: 2026-09-20
 ---
 
 # Agents
@@ -38,6 +38,8 @@ last_reviewed: 2026-09-13
 - (2026-09-13 추가) 실행 비용·컨텍스트 구성을 명시적으로 통제하는 옵션 확대: Bedrock/Vertex/Foundry 전반의 모델 effort 수준을 상한하는 `maxEffortLevel`, 매 요청마다 시스템 프롬프트를 새로 렌더링하는 `--system-prompt-snapshot off`(Claude Code v2.1.267). (sources/2026-09/2026-09-10.md)
 - (2026-09-13 추가) Artifact 퍼블리시 시 커넥터가 실제로 노출하지 않는 도구 이름을 그냥 받아들이던 문제를 고쳐, 선언된 도구가 하나도 없으면 퍼블리시를 거부하고 일부만 없으면 경고하도록 바뀌었습니다(Claude Code v2.1.265). "출력을 얼마나 견고하게 파싱·검증하는가(후처리)" 판단과 정확히 맞닿는 사례로, 실행 전에 선언과 실제 능력의 불일치를 잡아내는 가드레일입니다. (sources/2026-09/2026-09-09.md)
 - (2026-09-13 추가) 반복적으로 드러나는 경로·권한 검사 우회 패턴: 플러그인 경로에 백슬래시를 넣어 macOS·Linux의 symlink containment 검사를 우회하는 취약점(v2.1.265)에 이어, symlink된 디렉터리(`/etc`, `/tmp`, `/var`, `/bin` 등)의 deny/ask 권한 규칙이 실제 경로로 우회되는 문제와 마켓플레이스 항목 경로의 백슬래시 우회(v2.1.267/268)가 잇따라 발견·수정됐습니다. 하네스의 실행 격리를 신뢰할 때, 경로 정규화 관련 우회는 한 번 고쳐도 다른 진입점에서 반복해서 나타날 수 있다는 점을 보여줍니다. (sources/2026-09/2026-09-09.md, sources/2026-09/2026-09-11.md)
+- (2026-09-20 추가) 도구 호출 단위 sandbox 세분화가 이어지고 있습니다: Bash·PowerShell·Monitor의 auto mode에 커맨드별 도메인 allowlist(`allowed_domains`)가 추가되고(v2.1.271, 09-14) v2.1.272/273(09-15)에서 정식화됐으며, `claude plugin install/update`의 `--accept-command <sha256>`로 플러그인 커맨드를 개별 승인할 수 있게 됐습니다(v2.1.271). Adopt의 "제한된 범위의 코딩 에이전트" 판단이 도구 호출 단위까지 정밀해지고 있습니다. (sources/2026-09/2026-09-14.md, sources/2026-09/2026-09-15.md, sources/2026-09/2026-09-16.md)
+- (2026-09-20 추가) MCP 표준의 enterprise 인증 기능이 실제 SDK 구현으로 이어지고 있습니다: Rust SDK(rmcp) v3.3.0(09-10)에 enterprise refresh-token exchange와 ID-JAG(JWT Authorization Grant) exchange 지원이 추가됐습니다. 2026-08-30에 추가한 "MCP가 운영 인프라 표준으로 이동" 판단의 구체적 후속 사례입니다. (sources/2026-09/2026-09-15.md)
 
 ## Patterns
 
@@ -48,6 +50,7 @@ last_reviewed: 2026-09-13
 - 권한을 단계적으로 열어주는 progressive permission 방식.
 - (2026-08-30 추가) subagent 결과가 실행 한도(예: maxTurns)에 도달해 잘렸을 때, 이를 완결된 결과와 구분해 명시적으로 "partial"로 표시하는 방식. 잘린 결과를 완결로 오인하는 실패를 줄입니다(Claude Code v2.1.246). (sources/2026-08/2026-08-26.md)
 - (2026-09-06 추가) foreground subagent의 tool call을 Remote Control 클라이언트로 실시간 스트리밍해, 원격에서 실행 중인 subagent의 행동을 그대로 관찰하는 방식(Claude Code v2.1.251). Trial의 "원격 sandbox 또는 격리된 terminal 기반 에이전트 실행"을 실제로 감시 가능하게 만드는 진전입니다. (sources/2026-08/2026-08-31.md)
+- (2026-09-20 추가) Claude Code v2.1.274/275(09-17)에서 `/code-review`가 다수의 리뷰 서브에이전트를 띄우는 방식 대신 인라인 리뷰 프롬프트를 쓰는 방식으로 바뀌었습니다. Open Questions의 "subagent orchestration은 언제 단일 강한 모델보다 비용 대비 효과가 좋은가?"에 벤더가 실무에서 내놓은 답 중 하나로, 반복적인 리뷰 작업에는 오케스트레이션 오버헤드가 항상 이득은 아니라는 신호입니다. (sources/2026-09/2026-09-18.md)
 
 ## Failure Modes
 
@@ -73,6 +76,11 @@ last_reviewed: 2026-09-13
 - [Claude Code v2.1.265](../../sources/2026-09/2026-09-09.md#anthropic-claude-code-v21265-배포--플러그인-디렉터리-동적-로드-아티팩트-퍼블리시-도구-검증-prompt-cache-재사용-버그-다수-수정)
 - [Claude Code v2.1.266/267](../../sources/2026-09/2026-09-10.md#anthropic-claude-code-v21266267-배포--maxeffortlevel-설정-시스템-프롬프트-스냅샷-무효화-옵션-prompt-cache-안정화-다수)
 - [Claude Code v2.1.268](../../sources/2026-09/2026-09-11.md#anthropic-claude-code-v21268-배포--webfetch-무한대기-수정-서드파티-호환-엔드포인트-http-400-회귀-수정-symlink-권한-규칙플러그인-토큰-노출-등-보안-수정-다수)
+- [Claude Code v2.1.269/270](../../sources/2026-09/2026-09-14.md#anthropic-claude-code-v21269270-배포--claude-plugin-eval-output-style-workflow-동시-실행-한도-상향-prompt-cache-회귀-수정)
+- [Claude Code v2.1.271](../../sources/2026-09/2026-09-15.md#anthropic-claude-code-v21271-배포--remote-세션-fast-mode-per-command-도메인-allowlist-플러그인-커맨드-승인--accept-command)
+- [MCP Rust SDK(rmcp) v3.3.0](../../sources/2026-09/2026-09-15.md#model-context-protocol-rust-sdkrmcp-v330-릴리스--enterprise-refresh-token·id-jagjwt-authorization-grant-exchange-지원-추가)
+- [Claude Code v2.1.272/273](../../sources/2026-09/2026-09-16.md#anthropic-claude-code-v21272273-배포--llm-게이트웨이용-요청-헤더-remote-세션-포크-allowed_domains-샌드박싱-정식화)
+- [Claude Code v2.1.274/275](../../sources/2026-09/2026-09-18.md#anthropic-claude-code-v21274275-배포--mcp-streamable-http-타임아웃-설정-code-review-인라인-프롬프트-전환-claudeai-skillplugin-자동-동기화)
 
 ## Open Questions
 
