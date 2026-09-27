@@ -1,7 +1,7 @@
 ---
 title: "Evals / Benchmarks"
 topic: evals-benchmarks
-last_reviewed: 2026-09-14
+last_reviewed: 2026-09-27
 ---
 
 # Evals / Benchmarks
@@ -45,3 +45,4 @@ AI 모델과 에이전트의 성능을 어떻게 측정할지 정리하는 주�
 - benchmark saturation 이후에는 어떤 qualitative evidence를 함께 기록해야 하는가?
 - (2026-09-06 확인 필요) Terminal-Bench가 3.0(2026-08-24, 태스크셋 개편)에 이어 4.0(2026-08-27, 자원 보정 위주 유지보수 릴리스)까지 나왔다는 보도가 있으나 둘 다 원문 미확인(confidence: low)입니다. 원문이 확인되면 Benchmarks To Track의 Terminal-Bench 버전 표기를 갱신할 후보입니다. (sources/2026-08/2026-08-31.md, sources/2026-09/2026-09-03.md)
   - (2026-09-14 해소) GitHub 릴리스 페이지(harbor-framework/terminal-bench)를 직접 열어 확인한 결과, v4.0.0의 공식 발행 시각은 2026-08-26 04:48 UTC이며 task 8개 제거·19개 수정을 포함한 태스크셋 개편입니다(confidence: high, 직접 확인). 2026-09-09/11 로그에서 반복 지적된 tbench.ai 블로그 보도(2026-09-01~02)와의 날짜 불일치는, canonical 발행일을 GitHub 릴리스 태그 기준 2026-08-26으로 보는 것으로 해소합니다. tbench.ai 블로그 글은 태그 발행보다 늦게 나온 announcement로 추정됩니다. (https://github.com/harbor-framework/terminal-bench/releases/tag/v4.0.0)
+- (2026-09-27 확인 필요) 태스크셋 발행일 문제와는 별개로, 리더보드 집계 자체의 신뢰도 문제가 이번 주 반복됐습니다: SWE-bench Pro는 집계 기관마다 같은 모델이 81%대와 47%대로 동시에 보고되고(09-23), Terminal-Bench 4.0도 출처마다 58.2%/61.62%/55.8%/57.7%로 엇갈려(09-25) 어느 쪽도 신뢰할 수 있는 단일 수치로 기록하지 못했습니다. 별도로, OpenAI의 "Separating signal from noise in coding evaluations"(2026-07-08, 확장 창 밖이라 미기록)는 SWE-bench Pro task의 약 30%가 결함이 있다는 감사 결과를 담고 있어(09-21 로그에서 확인) 이 벤치마크의 신뢰도 자체에 의문을 제기합니다. 모두 원문 미확인(confidence: low)이거나 원문 자체가 서로 모순돼 이번 주 topic 문서에 반영하지 못했습니다. 원문이 확인되면 Benchmarks To Track의 SWE-bench Pro/Terminal-Bench 항목에 "집계 기관별 수치 불일치 주의"를 명시할 근거입니다. (sources/2026-09/2026-09-21.md, sources/2026-09/2026-09-23.md, sources/2026-09/2026-09-25.md)

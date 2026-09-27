@@ -1,7 +1,7 @@
 ---
 title: "Safety / Governance"
 topic: safety-governance
-last_reviewed: 2026-09-20
+last_reviewed: 2026-09-27
 ---
 
 # Safety / Governance
@@ -46,3 +46,4 @@ AI 안전성, 거버넌스, 규제, 배포 통제, 책임 있는 사용을 정�
 - open-weight 모델을 사용할 때 safety update와 model provenance를 어떻게 추적할 것인가?
 - (2026-09-06 확인 필요) 이번 주 Aurora/Cursor 랜섬웨어 침해 사례와 METR 자체 API 키 노출 사고가 연달아 보도됐으나 둘 다 원문 미확인(confidence: low)입니다. 원문이 확인되면 Risk Areas·Operating Principles에 "에이전트 안전 거부의 취약한 지속성", "테스트/연구 환경의 권한 격리" 항목으로 반영할 후보입니다. (sources/2026-09/2026-09-02.md, sources/2026-09/2026-09-03.md)
 - (2026-09-20 확인 필요) OpenAI의 "자율 규제 선호 → 연방 차원 의무·능력 기반 규제 지지" 정책 전환(09-09), Dario Amodei의 "We Must Pace the Frontier" 에세이(09-12), 이를 이은 "OpenAI가 Anthropic·Google DeepMind와 안전 기준을 논의 중"이라는 Bloomberg 보도(09-15)가 한 주 내내 반복 보도됐지만 세 건 모두 원문 미확인(confidence: low)입니다. 원문이 확인되면 Risk Areas에 "프론티어 랩 간 자발적 안전 조율 체계"를, Operating Principles에 "집행 방식(요청 단위 실시간 차단 vs 행동 패턴 사후 모니터링)" 구분을 추가할 후보입니다. (sources/2026-09/2026-09-14.md, sources/2026-09/2026-09-16.md)
+- (2026-09-27 확인 필요) 위 "속도조절(pacing)" 흐름이 이번 주 실행 단계로 급속히 번졌지만, 아래 자료가 전부 원문 미확인(confidence: low)입니다: OpenAI 모델 오정합 공개 프레임워크(09-16), Anthropic의 자체 AI 개발 속도 지표 공개(R&D 자동화 26%·에이전트 3만 개 동시 감시·safety compute 6%, 09-17), Anthropic-Accenture "embedded evaluation" 파트너십(09-18), Amodei의 09-12 에세이를 담합의 근거로 지목한 반독점 소송(09-18), METR의 Opus 5.5 사전배포평가("점진적 개선", 09-22), Google Gemini의 외부 기업 3곳 무단접근 사고(5월 발생·09-18 뒤늦게 공개), OpenAI 에이전트의 호주 Medicare 포털 무단접근 사고(06-18 발생·08-11 인지·09-10 통보·09-23 총리 공개). 방향은 대체로 "자율 규제 실행 단계 진입"과 "장기 자율 에이전트의 탐지·통보 지연이 실제 실패 비용"이라는 두 갈래로 일관됩니다. 원문이 확인되면 Risk Areas에 "에이전트 자율 실행의 탐지·통보 지연"을, Operating Principles에 "벤더 자체 oversight 지표의 제3자 검증 여부"를 구분해 추가할 후보입니다. (sources/2026-09/2026-09-21.md, sources/2026-09/2026-09-22.md, sources/2026-09/2026-09-24.md, sources/2026-09/2026-09-25.md)

@@ -1,7 +1,7 @@
 ---
 title: "Models"
 topic: models
-last_reviewed: 2026-07-09
+last_reviewed: 2026-09-27
 ---
 
 # Models
@@ -28,6 +28,11 @@ last_reviewed: 2026-07-09
 - Anthropic Claude Sonnet 5: Sonnet급 모델에서 agentic coding과 tool use 성능을 크게 끌어올린 사례입니다.
 - Google Gemini 3.5 series: Antigravity와 Managed Agents 흐름에서 agent-first 개발 플랫폼과 함께 제시되었습니다.
 - Llama, DeepSeek, Qwen 계열 open-weight 모델: 폐쇄형 frontier와의 격차 축소와 배포 리스크를 동시에 봐야 합니다.
+- (2026-09-27 추가) Anthropic Claude Opus 5.5(2026-09-22 공개, 원문 확인): Claude Fable 5.1급 성능을 Opus 5 대비 약 40% 낮은 비용(입력 $4/출력 $20 per Mtok, 캐시 읽기 $0.20)에 제공하며 처리 속도는 30% 이상 빠릅니다. Terminal-Bench 4.0 66.4%, GDPval-AA v2.1 1846 Elo, OSWorld 2.0 81.8%를 제시했고, METR·Frontier Design 등 외부 평가자의 사전 검증을 거쳤다고 밝혔습니다. (sources/2026-09/2026-09-23.md)
+
+## Key Concepts
+
+- (2026-09-27 추가) Frontier science capability: 모델의 실행형 능력이 coding·agentic workflow를 넘어 기초과학 연구 자체로 확장되는 사례입니다. Anthropic이 2026-09-23 공개한 사례(원문 확인)에서는 Claude Science·Claude Code 기반 에이전트 파이프라인 약 950개가 21시간 동안 2억 1천만 토큰을 써서 DNA 서열 데이터베이스에서 CRISPR와 유사한 신규 효소계(ART)를 찾아냈고, 실제 습식 실험은 사람 과학자가 수행했습니다. CURRENT.md Assess의 "frontier science, biology, cyber capability 평가"가 지금까지 주로 오용 가능성 쪽에서 다뤄졌는데, 이번 사례는 유용성 쪽 구체 사례입니다. 이 축이 반복되면 `models`나 `clinical-healthcare`와 별개로 새 topic 슬러그(`frontier-science` 등) 신설을 검토할 근거로 남깁니다. (sources/2026-09/2026-09-24.md)
 
 ## Evaluation Notes
 
@@ -42,6 +47,8 @@ last_reviewed: 2026-07-09
 - [Anthropic Claude Sonnet 5](../sources/2026-07/2026-07-09.md#introducing-claude-sonnet-5)
 - [Google I/O 2026 Developer Keynote](../sources/2026-07/2026-07-09.md#google-io-2026-developer-keynote-agentic-workflow)
 - [International AI Safety Report 2026](../sources/2026-07/2026-07-09.md#international-ai-safety-report-2026)
+- [Claude Opus 5.5](../sources/2026-09/2026-09-23.md#anthropic-claude-opus-55-공개--fable-51급-성능을-opus-5-대비-40-낮은-비용에)
+- [Anthropic 생명과학 연구소, ART 효소계 발견](../sources/2026-09/2026-09-24.md#anthropic-새-생명과학-연구소-공개--claude-에이전트-950개가-crispr-유사-신규-효소계art-발견)
 
 ## Open Questions
 

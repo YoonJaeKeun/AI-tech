@@ -1,7 +1,7 @@
 ---
 title: "Agents"
 topic: agents
-last_reviewed: 2026-09-20
+last_reviewed: 2026-09-27
 ---
 
 # Agents
@@ -40,6 +40,8 @@ last_reviewed: 2026-09-20
 - (2026-09-13 추가) 반복적으로 드러나는 경로·권한 검사 우회 패턴: 플러그인 경로에 백슬래시를 넣어 macOS·Linux의 symlink containment 검사를 우회하는 취약점(v2.1.265)에 이어, symlink된 디렉터리(`/etc`, `/tmp`, `/var`, `/bin` 등)의 deny/ask 권한 규칙이 실제 경로로 우회되는 문제와 마켓플레이스 항목 경로의 백슬래시 우회(v2.1.267/268)가 잇따라 발견·수정됐습니다. 하네스의 실행 격리를 신뢰할 때, 경로 정규화 관련 우회는 한 번 고쳐도 다른 진입점에서 반복해서 나타날 수 있다는 점을 보여줍니다. (sources/2026-09/2026-09-09.md, sources/2026-09/2026-09-11.md)
 - (2026-09-20 추가) 도구 호출 단위 sandbox 세분화가 이어지고 있습니다: Bash·PowerShell·Monitor의 auto mode에 커맨드별 도메인 allowlist(`allowed_domains`)가 추가되고(v2.1.271, 09-14) v2.1.272/273(09-15)에서 정식화됐으며, `claude plugin install/update`의 `--accept-command <sha256>`로 플러그인 커맨드를 개별 승인할 수 있게 됐습니다(v2.1.271). Adopt의 "제한된 범위의 코딩 에이전트" 판단이 도구 호출 단위까지 정밀해지고 있습니다. (sources/2026-09/2026-09-14.md, sources/2026-09/2026-09-15.md, sources/2026-09/2026-09-16.md)
 - (2026-09-20 추가) MCP 표준의 enterprise 인증 기능이 실제 SDK 구현으로 이어지고 있습니다: Rust SDK(rmcp) v3.3.0(09-10)에 enterprise refresh-token exchange와 ID-JAG(JWT Authorization Grant) exchange 지원이 추가됐습니다. 2026-08-30에 추가한 "MCP가 운영 인프라 표준으로 이동" 판단의 구체적 후속 사례입니다. (sources/2026-09/2026-09-15.md)
+- (2026-09-27 추가) 실행 제어가 계속 벤더 인프라 레이어로 이동합니다: auto mode 분류기가 서버사이드 기본값으로 전환되며 과금되지 않고(Claude Code v2.1.278, 09-19), CLAUDE.md가 없는 프로젝트의 AGENTS.md 지원과 게이트웨이 egress boundary 옵션(`CLAUDE_GATEWAY_PROXY_IS_EGRESS_BOUNDARY`)이 함께 추가됐습니다(v2.1.277). (sources/2026-09/2026-09-21.md)
+- (2026-09-27 추가) 신모델(Opus 5.5)이 발표 당일 Claude Code 기본 Opus 모델로 즉시 편입됐습니다(v2.1.280, 09-22, 1M 컨텍스트). 다음날에는 Bedrock `assume_role`/`guardrail` 설정과 세션 재개(resume) 안정성 관련 다수 버그(재개 시 API 대화 추론 붕괴, prompt cache 손실, 무한 재시도)가 한 번에 수정됐습니다(v2.1.281, 09-23). Trial의 "긴 context와 추론 effort를 조절하는 모델 선택 전략"이 실제로 오래 지속되는 세션에서 의미가 있으려면 이런 재개 안정성이 먼저 갖춰져야 한다는 점을 보여줍니다. (sources/2026-09/2026-09-23.md, sources/2026-09/2026-09-24.md)
 
 ## Patterns
 
@@ -81,6 +83,9 @@ last_reviewed: 2026-09-20
 - [MCP Rust SDK(rmcp) v3.3.0](../../sources/2026-09/2026-09-15.md#model-context-protocol-rust-sdkrmcp-v330-릴리스--enterprise-refresh-token·id-jagjwt-authorization-grant-exchange-지원-추가)
 - [Claude Code v2.1.272/273](../../sources/2026-09/2026-09-16.md#anthropic-claude-code-v21272273-배포--llm-게이트웨이용-요청-헤더-remote-세션-포크-allowed_domains-샌드박싱-정식화)
 - [Claude Code v2.1.274/275](../../sources/2026-09/2026-09-18.md#anthropic-claude-code-v21274275-배포--mcp-streamable-http-타임아웃-설정-code-review-인라인-프롬프트-전환-claudeai-skillplugin-자동-동기화)
+- [Claude Code v2.1.276~278](../../sources/2026-09/2026-09-21.md#anthropic-claude-code-v21276278-배포--서버사이드-auto-mode-분류기-기본값-전환-agentsmd-지원-gateway-egress-boundary-옵션)
+- [Claude Code v2.1.280](../../sources/2026-09/2026-09-23.md#anthropic-claude-code-v21280-배포--claude-opus-55를-기본-opus-모델로-편입-1m-컨텍스트)
+- [Claude Code v2.1.281](../../sources/2026-09/2026-09-24.md#anthropic-claude-code-v21281-배포--bedrock-guardrailassume_role-세션-재개-안정성-대규모-수정)
 
 ## Open Questions
 
