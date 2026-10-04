@@ -1,7 +1,7 @@
 ---
 title: "Models"
 topic: models
-last_reviewed: 2026-09-27
+last_reviewed: 2026-10-04
 ---
 
 # Models
@@ -29,10 +29,12 @@ last_reviewed: 2026-09-27
 - Google Gemini 3.5 series: Antigravity와 Managed Agents 흐름에서 agent-first 개발 플랫폼과 함께 제시되었습니다.
 - Llama, DeepSeek, Qwen 계열 open-weight 모델: 폐쇄형 frontier와의 격차 축소와 배포 리스크를 동시에 봐야 합니다.
 - (2026-09-27 추가) Anthropic Claude Opus 5.5(2026-09-22 공개, 원문 확인): Claude Fable 5.1급 성능을 Opus 5 대비 약 40% 낮은 비용(입력 $4/출력 $20 per Mtok, 캐시 읽기 $0.20)에 제공하며 처리 속도는 30% 이상 빠릅니다. Terminal-Bench 4.0 66.4%, GDPval-AA v2.1 1846 Elo, OSWorld 2.0 81.8%를 제시했고, METR·Frontier Design 등 외부 평가자의 사전 검증을 거쳤다고 밝혔습니다. (sources/2026-09/2026-09-23.md)
+- (2026-10-04 추가) Anthropic Claude Sonnet 5.5(2026-09-28 공개, 원문 확인): Sonnet 5와 동일 가격(입력 $2/출력 $10 per Mtok, 캐시 읽기 $0.20)에 출력 생성이 30% 이상 빨라지고 작업당 비용은 최대 30% 낮아졌다고 밝힙니다. Terminal-Bench 4.0 70.6%(Sonnet 5는 10.3%), CursorBench 4.0 55.5%(Opus 5.5와 2점 차), GDPval-AA v2.1 1844, OSWorld 2.1 80.1%를 제시했습니다. Watchlist의 "Claude Sonnet 5의 실제 agentic coding 성능과 비용 효율" 항목이 다음 세대로 이어지는 직접 후속 사례입니다. (sources/2026-09/2026-09-29.md)
 
 ## Key Concepts
 
 - (2026-09-27 추가) Frontier science capability: 모델의 실행형 능력이 coding·agentic workflow를 넘어 기초과학 연구 자체로 확장되는 사례입니다. Anthropic이 2026-09-23 공개한 사례(원문 확인)에서는 Claude Science·Claude Code 기반 에이전트 파이프라인 약 950개가 21시간 동안 2억 1천만 토큰을 써서 DNA 서열 데이터베이스에서 CRISPR와 유사한 신규 효소계(ART)를 찾아냈고, 실제 습식 실험은 사람 과학자가 수행했습니다. CURRENT.md Assess의 "frontier science, biology, cyber capability 평가"가 지금까지 주로 오용 가능성 쪽에서 다뤄졌는데, 이번 사례는 유용성 쪽 구체 사례입니다. 이 축이 반복되면 `models`나 `clinical-healthcare`와 별개로 새 topic 슬러그(`frontier-science` 등) 신설을 검토할 근거로 남깁니다. (sources/2026-09/2026-09-24.md)
+- (2026-10-04 추가) 위 frontier science capability 축에 두 번째 구체 사례가 나왔습니다. Claude Science 위에서 Fable 5.1이 N=4 super Yang-Mills 이론의 6-입자 산란 진폭을 9-loop 수준까지 독립 계산했고(2026-09-25, 원문 확인), SLAC 국립가속기연구소 물리학자 Lance Dixon이 결과를 검증했습니다. 부트스트랩 기법과 form-factor 접근 두 방법으로 상호 검증했으며 총 비용은 약 1,000~2,000달러입니다. Anthropic 연구자는 "이미 알려진 방법에 사람보다 조금 더 많은 컴퓨팅을 쓴 것"이라고 한계를 직접 밝혔습니다. (sources/2026-09/2026-09-28.md)
 
 ## Evaluation Notes
 
@@ -49,6 +51,8 @@ last_reviewed: 2026-09-27
 - [International AI Safety Report 2026](../sources/2026-07/2026-07-09.md#international-ai-safety-report-2026)
 - [Claude Opus 5.5](../sources/2026-09/2026-09-23.md#anthropic-claude-opus-55-공개--fable-51급-성능을-opus-5-대비-40-낮은-비용에)
 - [Anthropic 생명과학 연구소, ART 효소계 발견](../sources/2026-09/2026-09-24.md#anthropic-새-생명과학-연구소-공개--claude-에이전트-950개가-crispr-유사-신규-효소계art-발견)
+- [Claude Science 9-loop 산란 진폭 계산](../sources/2026-09/2026-09-28.md#anthropic-claude-science가-n4-super-yang-mills-이론의-9-loop-산란-진폭을-독립적으로-계산--물리학자-dixon이-검증)
+- [Claude Sonnet 5.5](../sources/2026-09/2026-09-29.md#anthropic-claude-sonnet-55-공개--sonnet-5-동일-가격에-출력-30-빠르고-작업당-비용-최대-30-절감)
 
 ## Open Questions
 

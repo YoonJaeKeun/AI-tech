@@ -1,7 +1,7 @@
 ---
 title: "Agents"
 topic: agents
-last_reviewed: 2026-09-27
+last_reviewed: 2026-10-04
 ---
 
 # Agents
@@ -42,6 +42,10 @@ last_reviewed: 2026-09-27
 - (2026-09-20 추가) MCP 표준의 enterprise 인증 기능이 실제 SDK 구현으로 이어지고 있습니다: Rust SDK(rmcp) v3.3.0(09-10)에 enterprise refresh-token exchange와 ID-JAG(JWT Authorization Grant) exchange 지원이 추가됐습니다. 2026-08-30에 추가한 "MCP가 운영 인프라 표준으로 이동" 판단의 구체적 후속 사례입니다. (sources/2026-09/2026-09-15.md)
 - (2026-09-27 추가) 실행 제어가 계속 벤더 인프라 레이어로 이동합니다: auto mode 분류기가 서버사이드 기본값으로 전환되며 과금되지 않고(Claude Code v2.1.278, 09-19), CLAUDE.md가 없는 프로젝트의 AGENTS.md 지원과 게이트웨이 egress boundary 옵션(`CLAUDE_GATEWAY_PROXY_IS_EGRESS_BOUNDARY`)이 함께 추가됐습니다(v2.1.277). (sources/2026-09/2026-09-21.md)
 - (2026-09-27 추가) 신모델(Opus 5.5)이 발표 당일 Claude Code 기본 Opus 모델로 즉시 편입됐습니다(v2.1.280, 09-22, 1M 컨텍스트). 다음날에는 Bedrock `assume_role`/`guardrail` 설정과 세션 재개(resume) 안정성 관련 다수 버그(재개 시 API 대화 추론 붕괴, prompt cache 손실, 무한 재시도)가 한 번에 수정됐습니다(v2.1.281, 09-23). Trial의 "긴 context와 추론 effort를 조절하는 모델 선택 전략"이 실제로 오래 지속되는 세션에서 의미가 있으려면 이런 재개 안정성이 먼저 갖춰져야 한다는 점을 보여줍니다. (sources/2026-09/2026-09-23.md, sources/2026-09/2026-09-24.md)
+- (2026-10-04 추가) "발표 당일 기본 모델 편입" 패턴이 다시 반복됐습니다: Claude Sonnet 5.5(2026-09-28 공개, 원문 확인)가 같은 날 Claude Code v2.1.284의 기본 Sonnet 모델로 편입됐습니다(1M 컨텍스트, 입력 $2/출력 $10). 같은 배치의 v2.1.283(09-25)은 LLM 게이트웨이 요청을 묶는 `x-claude-code-prompt-id` 헤더(옵트인), 허용 모델만 제한하는 `availableModelsMatch` 관리 설정, 오래된 모델을 겨냥한 프롬프트 패턴을 진단하는 `/doctor prompt-audit`을 추가했고, v2.1.282(09-24)는 세션 재개 안정성 버그 다수를 수정했습니다. (sources/2026-09/2026-09-29.md)
+- (2026-10-04 추가) 세션·인증·MCP 안정성 개선이 거의 매일 단위로 이어졌습니다: v2.1.285(09-29)는 `claude plugin configure`·`claude --desktop`·`allowedProviders` 관리 설정을 추가했고, v2.1.286(09-30)은 여러 권한 요청이 쌓일 때 "2 of 5" 형태로 개수를 보여주는 권한 프롬프트 카운터를 추가했습니다. v2.1.287(10-01)은 플러그인이 더 깊은 동작까지 바꿀 수 있게 하는 "Claude Mods" 체계와 세션을 이름·태스크로 거르는 `n:<텍스트>` 필터를 changelog에 반영했습니다. Adopt의 "제한된 범위의 코딩 에이전트"·"LLM 전처리·후처리 경계" 판단과 맞물리는 안정성 개선이 계속되는 동시에, Trial의 "subagent orchestration" 판단과도 닿는 확장성(플러그인) 기능이 더해지고 있습니다. (sources/2026-09/2026-09-30.md, sources/2026-10/2026-10-01.md, sources/2026-10/2026-10-02.md)
+- (2026-10-04 추가) Anthropic이 유료 Claude 플랜 개발자 대상 Claude Plugins 제출 포털을 공개했습니다(2026-09-25, 원문 확인). MCP 커넥터 단독 제출 또는 MCP 서버+Agent Skills를 묶은 GitHub 저장소 제출 두 방식을 지원하며, 제출 즉시 자동 안전성 검증(auto-validation)과 게시 후 설치·검색 분석을 제공합니다. 2026-07-28 MCP 2.0(stateless core) 사양과 MCP Apps, Enterprise Managed Auth를 지원한다고 밝혀, Watchlist의 MCP 사양·거버넌스 항목이 사양 문서 수준을 넘어 실제 유통 구조(마켓플레이스+제출 포털)로 구체화된 사례입니다. (sources/2026-09/2026-09-28.md)
+- (2026-10-04 추가) Anthropic·Barclays가 Claude Code·Claude 모델 전사 확산 계약을 공개했습니다(2026-10-01, 원문 확인). 2026년 말까지 개발자 50%, 2027년에는 대다수가 Claude Code를 쓰도록 하는 목표를 밝혔고, 기존 Colleague Knowledge Assistant는 1.6만명 이상이 사용하며 검색 100만 건 이상을 처리했으며 Global Markets 부문은 하루 12만 건의 이메일을 처리한다고 밝혔습니다. 거버넌스·보안 통제를 명시한 전사 배포 사례로 Adopt의 "제한된 범위의 코딩 에이전트" 판단과 가까운 방향이지만, 구체적인 비용·시간 절감 수치는 이번 발표에 포함되지 않았습니다. (sources/2026-10/2026-10-02.md)
 
 ## Patterns
 
@@ -86,6 +90,12 @@ last_reviewed: 2026-09-27
 - [Claude Code v2.1.276~278](../../sources/2026-09/2026-09-21.md#anthropic-claude-code-v21276278-배포--서버사이드-auto-mode-분류기-기본값-전환-agentsmd-지원-gateway-egress-boundary-옵션)
 - [Claude Code v2.1.280](../../sources/2026-09/2026-09-23.md#anthropic-claude-code-v21280-배포--claude-opus-55를-기본-opus-모델로-편입-1m-컨텍스트)
 - [Claude Code v2.1.281](../../sources/2026-09/2026-09-24.md#anthropic-claude-code-v21281-배포--bedrock-guardrailassume_role-세션-재개-안정성-대규모-수정)
+- [Claude Plugins 제출 포털](../../sources/2026-09/2026-09-28.md#anthropic-claude-plugins-디렉터리-제출-포털-공개--mcp-20stateless-coremcp-appsenterprise-managed-auth-지원)
+- [Claude Code v2.1.282~284](../../sources/2026-09/2026-09-29.md#anthropic-claude-code-v21282284-배포--sonnet-55-기본-모델-편입-세션-재개프롬프트-캐시-안정성-다수-수정)
+- [Claude Code v2.1.285](../../sources/2026-09/2026-09-30.md#anthropic-claude-code-v21285-배포--claude-plugin-configure---desktop-다수-세션-안정성-수정)
+- [Claude Code v2.1.286](../../sources/2026-10/2026-10-01.md#anthropic-claude-code-v21286-배포--권한-프롬프트-카운터-다수-자격증명세션mcp-안정성-수정)
+- [Claude Code v2.1.287](../../sources/2026-10/2026-10-02.md#anthropic-claude-code-v21287-배포--claude-mods-플러그인-체계-에이전트-뷰-필터-다수-mcpremote-control-안정성-수정)
+- [Anthropic·Barclays 전사 확산 계약](../../sources/2026-10/2026-10-02.md#anthropicbarclays-claude-codeclaude-모델-전사-확산-계약-공개--2026년-말-개발자-50-claude-code-도입-목표-기존-colleague-knowledge-assistant-16만명-사용검색-100만건)
 
 ## Open Questions
 
