@@ -1,7 +1,7 @@
 ---
 title: "Open Source Ecosystem"
 topic: open-source
-last_reviewed: 2026-09-20
+last_reviewed: 2026-10-11
 ---
 
 # Open Source Ecosystem
@@ -16,6 +16,7 @@ open-weight 모델, 주요 프레임워크, 도구 생태계와 관련된 누적
 - 기존 판단(`topics/models.md`): open-weight 모델은 접근성과 privacy에서 중요해졌지만,
   release 이후 회수가 어렵고 safeguard 제거가 쉽다는 리스크가 있습니다.
 - (2026-09-20 갱신) 이 축의 첫 원문 확인 자료가 들어왔습니다. llama.cpp가 신모델(Maple 20B-A1B, Tencent Hy 4, Spark2.5)을 출시 당일 지원 추가하는 사례가 반복되고 있어, open-weight 모델이 로컬·엣지에서 실제로 쓸모 있으려면 서빙 엔진의 신모델 지원 속도가 뒷받침돼야 한다는 관찰을 더합니다. (sources/2026-09/2026-09-15.md)
+- (2026-10-11 갱신) Hugging Face Transformers v5.19.0(2026-10-06, 원문 확인, confidence: medium — 발행 연도는 인접 릴리스로 추정)이 Google EmbeddingGemma2(멀티모달 임베딩 모델)를 추가했습니다. 텍스트·이미지·오디오·비디오를 하나의 768차원 벡터 공간에 넣고 Matryoshka 표현 학습으로 512·256·128차원까지 잘라 쓸 수 있습니다. 주요 프레임워크가 신규 멀티모달 임베딩 모델을 바로 통합하는 속도를 보여주는 사례로, llama.cpp의 신모델 당일 지원 패턴과 같은 결입니다. (sources/2026-10/2026-10-09.md)
 
 ## Watch Items
 
@@ -34,6 +35,7 @@ open-weight 모델, 주요 프레임워크, 도구 생태계와 관련된 누적
 ## Sources
 
 - [llama.cpp v0.4.1 릴리스](../sources/2026-09/2026-09-15.md#ggml-org-llamacpp-v041-릴리스--maple-20b-a1b·tencent-hy-4·spark25-모델-지원-ggml-v0240으로-갱신)
+- [Hugging Face Transformers v5.19.0](../sources/2026-10/2026-10-09.md#hugging-face-transformers-v5190--google-embeddinggemma2멀티모달-임베딩-추가-moe-라우터-로짓-출력-방식-breaking-change)
 
 ## Open Questions
 

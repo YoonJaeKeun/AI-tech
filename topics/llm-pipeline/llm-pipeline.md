@@ -1,7 +1,7 @@
 ---
 title: "LLM Pipeline (전처리·후처리)"
 topic: llm-pipeline
-last_reviewed: 2026-07-09
+last_reviewed: 2026-10-11
 ---
 
 # LLM Pipeline — 전처리와 후처리
@@ -61,6 +61,10 @@ LLM 호출 하나를 실제로 성립시키는 입력·출력 처리 파이프�
 - [Agent Loop](../agents/agent-loop.md): 이 파이프라인을 목표 달성까지 반복 실행하는 제어 구조. 이번 스텝의 후처리 결과(관찰)가 다음 스텝의 전처리 입력이 됩니다.
 - [Agents 허브](../agents/agents.md): 에이전트 주제의 현재 판단과 목차.
 - [Models](../models.md): 이 파이프라인이 감싸는 모델 자체의 특성(context 길이, reasoning effort, tool use).
+
+## Notable Integrations
+
+- (2026-10-11 추가) LangChain이 `langchain-openai`에 OpenAI Decisions API 베타 래퍼를 추가했습니다(2026-10-08 PR 병합, 원문 확인, confidence: medium — Decisions API 자체의 1차 발표는 검증하지 않음). `OpenAIAutoModeMiddleware`(도구 호출이 위험한지 판단해 거부 시 차단)와 `OpenAIModelRouterMiddleware`(선택지별로 다른 모델에 라우팅)를 프레임워크 미들웨어로 표준화한 사례로, "도구 호출 위험 판단"과 "출력 가드레일"([후처리](postprocessing.md) 참고)이 벤더(OpenAI) API에서 프레임워크(LangChain) 미들웨어로 내려오는 흐름을 보여줍니다. 베타 단계라 실제 안정성·오탐율은 다음 로그에서 더 볼 필요가 있습니다. (sources/2026-10/2026-10-09.md)
 
 ## Open Questions
 

@@ -1,7 +1,7 @@
 ---
 title: "Safety / Governance"
 topic: safety-governance
-last_reviewed: 2026-10-04
+last_reviewed: 2026-10-11
 ---
 
 # Safety / Governance
@@ -30,6 +30,7 @@ AI 안전성, 거버넌스, 규제, 배포 통제, 책임 있는 사용을 정�
 - (2026-08-30 추가) 표준 프로토콜(MCP) 자체가 Client ID Metadata Documents, Enterprise-Managed Authorization 같은 인증 기능을 내장하는 방향으로 진화하고 있어, 최소 권한 원칙을 프로토콜 레벨에서 뒷받침할 수 있는지 다음 실험에서 확인할 대상입니다. (sources/2026-08/2026-08-24.md)
 - model output은 source, version, prompt, reviewer를 함께 기록합니다.
 - post-deployment monitoring과 incident log를 처음부터 설계합니다.
+- (2026-10-11 추가) Anthropic이 Project Glasswing과 기존 Cyber Verification Program(CVP)을 통합해 Defense/Red Team/Specialized 3단계 접근 등급으로 재편했습니다(2026-10-06, 원문 확인). 자격을 갖춘 보안 전문가에게 Claude Opus 5.5·Sonnet 5.5·Mythos 5.1 등 안전장치를 줄인 모델을 신청·심사 기반으로 등급별 제공합니다. Project Glasswing 참여 기관은 2026년 4~7월 사이 최소 129,000건의 취약점을 발견했고 그중 33,000건 이상이 critical/high-severity였다고 밝혔습니다(벤더 자체 발표, 제3자 검증 없음). Risk Areas의 "Cyber and bio capability" 판단과 직접 맞닿은, 신청·심사 기반 등급별 접근 통제의 구체 사례입니다. (sources/2026-10/2026-10-07.md)
 
 ## Sources
 
@@ -38,6 +39,7 @@ AI 안전성, 거버넌스, 규제, 배포 통제, 책임 있는 사용을 정�
 - [OpenAI GPT-5.6 Sol Preview](../sources/2026-07/2026-07-09.md#previewing-gpt-56-sol)
 - [FDA AI-Enabled Medical Devices](../sources/2026-07/2026-07-09.md#fda-ai-enabled-medical-devices)
 - [The New MCP Roadmap](../sources/2026-08/2026-08-24.md#the-new-mcp-roadmap)
+- [Cyber Verification Program 확장 공개](../sources/2026-10/2026-10-07.md#anthropic-cyber-verification-program-확장-공개--project-glasswing과-기존-cvp를-통합해-defensered-teamspecialized-3단계-접근-등급으로-재편)
 
 ## Open Questions
 

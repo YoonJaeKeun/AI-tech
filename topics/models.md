@@ -1,7 +1,7 @@
 ---
 title: "Models"
 topic: models
-last_reviewed: 2026-10-04
+last_reviewed: 2026-10-11
 ---
 
 # Models
@@ -30,6 +30,7 @@ last_reviewed: 2026-10-04
 - Llama, DeepSeek, Qwen 계열 open-weight 모델: 폐쇄형 frontier와의 격차 축소와 배포 리스크를 동시에 봐야 합니다.
 - (2026-09-27 추가) Anthropic Claude Opus 5.5(2026-09-22 공개, 원문 확인): Claude Fable 5.1급 성능을 Opus 5 대비 약 40% 낮은 비용(입력 $4/출력 $20 per Mtok, 캐시 읽기 $0.20)에 제공하며 처리 속도는 30% 이상 빠릅니다. Terminal-Bench 4.0 66.4%, GDPval-AA v2.1 1846 Elo, OSWorld 2.0 81.8%를 제시했고, METR·Frontier Design 등 외부 평가자의 사전 검증을 거쳤다고 밝혔습니다. (sources/2026-09/2026-09-23.md)
 - (2026-10-04 추가) Anthropic Claude Sonnet 5.5(2026-09-28 공개, 원문 확인): Sonnet 5와 동일 가격(입력 $2/출력 $10 per Mtok, 캐시 읽기 $0.20)에 출력 생성이 30% 이상 빨라지고 작업당 비용은 최대 30% 낮아졌다고 밝힙니다. Terminal-Bench 4.0 70.6%(Sonnet 5는 10.3%), CursorBench 4.0 55.5%(Opus 5.5와 2점 차), GDPval-AA v2.1 1844, OSWorld 2.1 80.1%를 제시했습니다. Watchlist의 "Claude Sonnet 5의 실제 agentic coding 성능과 비용 효율" 항목이 다음 세대로 이어지는 직접 후속 사례입니다. (sources/2026-09/2026-09-29.md)
+- (2026-10-11 추가) Anthropic Claude Haiku 5.5(2026-10-07 공개, 원문 확인): Haiku 계열 최초로 조절 가능한 effort(Low~Max)를 지원하는 가장 저렴·빠른 소형 모델입니다. Haiku 4.5 대비 평균 약 75% 저렴하다고 밝혔으나(10만 토큰까지 90%, 그 이상 50%), 새 tokenizer로 토큰 사용량 자체가 약간 늘어 절감폭이 일부 상쇄됩니다. Terminal-Bench 4.0 39.2%(Haiku 4.5는 0.0%, Sonnet 5.5는 70.6%)로 Anthropic은 복잡한 agentic coding에는 여전히 Sonnet 5.5·Opus 5.5가 낫다고 명시했습니다. 소형 모델에까지 effort 조절이 내려온 것은 Trial의 "추론 effort를 조절하는 모델 선택 전략"을 모델 선택 레이어에서 재확인하는 사례입니다. (sources/2026-10/2026-10-08.md)
 
 ## Key Concepts
 
@@ -53,6 +54,7 @@ last_reviewed: 2026-10-04
 - [Anthropic 생명과학 연구소, ART 효소계 발견](../sources/2026-09/2026-09-24.md#anthropic-새-생명과학-연구소-공개--claude-에이전트-950개가-crispr-유사-신규-효소계art-발견)
 - [Claude Science 9-loop 산란 진폭 계산](../sources/2026-09/2026-09-28.md#anthropic-claude-science가-n4-super-yang-mills-이론의-9-loop-산란-진폭을-독립적으로-계산--물리학자-dixon이-검증)
 - [Claude Sonnet 5.5](../sources/2026-09/2026-09-29.md#anthropic-claude-sonnet-55-공개--sonnet-5-동일-가격에-출력-30-빠르고-작업당-비용-최대-30-절감)
+- [Claude Haiku 5.5](../sources/2026-10/2026-10-08.md#anthropic-claude-haiku-55-공개--가장-저렴빠른-소형-모델-haiku-계열-최초로-조절-가능한-effortlowmax-지원)
 
 ## Open Questions
 

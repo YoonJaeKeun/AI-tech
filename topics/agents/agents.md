@@ -1,7 +1,7 @@
 ---
 title: "Agents"
 topic: agents
-last_reviewed: 2026-10-04
+last_reviewed: 2026-10-11
 ---
 
 # Agents
@@ -46,6 +46,8 @@ last_reviewed: 2026-10-04
 - (2026-10-04 추가) 세션·인증·MCP 안정성 개선이 거의 매일 단위로 이어졌습니다: v2.1.285(09-29)는 `claude plugin configure`·`claude --desktop`·`allowedProviders` 관리 설정을 추가했고, v2.1.286(09-30)은 여러 권한 요청이 쌓일 때 "2 of 5" 형태로 개수를 보여주는 권한 프롬프트 카운터를 추가했습니다. v2.1.287(10-01)은 플러그인이 더 깊은 동작까지 바꿀 수 있게 하는 "Claude Mods" 체계와 세션을 이름·태스크로 거르는 `n:<텍스트>` 필터를 changelog에 반영했습니다. Adopt의 "제한된 범위의 코딩 에이전트"·"LLM 전처리·후처리 경계" 판단과 맞물리는 안정성 개선이 계속되는 동시에, Trial의 "subagent orchestration" 판단과도 닿는 확장성(플러그인) 기능이 더해지고 있습니다. (sources/2026-09/2026-09-30.md, sources/2026-10/2026-10-01.md, sources/2026-10/2026-10-02.md)
 - (2026-10-04 추가) Anthropic이 유료 Claude 플랜 개발자 대상 Claude Plugins 제출 포털을 공개했습니다(2026-09-25, 원문 확인). MCP 커넥터 단독 제출 또는 MCP 서버+Agent Skills를 묶은 GitHub 저장소 제출 두 방식을 지원하며, 제출 즉시 자동 안전성 검증(auto-validation)과 게시 후 설치·검색 분석을 제공합니다. 2026-07-28 MCP 2.0(stateless core) 사양과 MCP Apps, Enterprise Managed Auth를 지원한다고 밝혀, Watchlist의 MCP 사양·거버넌스 항목이 사양 문서 수준을 넘어 실제 유통 구조(마켓플레이스+제출 포털)로 구체화된 사례입니다. (sources/2026-09/2026-09-28.md)
 - (2026-10-04 추가) Anthropic·Barclays가 Claude Code·Claude 모델 전사 확산 계약을 공개했습니다(2026-10-01, 원문 확인). 2026년 말까지 개발자 50%, 2027년에는 대다수가 Claude Code를 쓰도록 하는 목표를 밝혔고, 기존 Colleague Knowledge Assistant는 1.6만명 이상이 사용하며 검색 100만 건 이상을 처리했으며 Global Markets 부문은 하루 12만 건의 이메일을 처리한다고 밝혔습니다. 거버넌스·보안 통제를 명시한 전사 배포 사례로 Adopt의 "제한된 범위의 코딩 에이전트" 판단과 가까운 방향이지만, 구체적인 비용·시간 절감 수치는 이번 발표에 포함되지 않았습니다. (sources/2026-10/2026-10-02.md)
+- (2026-10-11 추가) Claude Code v2.1.288~295가 거의 매일 단위로 배포되며 하네스 안정성·mod/plugin·subagent 기능이 계속 확장됐습니다. mod용 `$.ui.selection()`, MCP 재인증 프롬프트, `--marketplace` 지정 설치, Agent tool `effort` 파라미터, `agent.spawn` mod 훅의 workflow agent 지원, `$.tool.register`의 `isDeferred` 플래그, subagent 타입 구분 필드가 추가됐고, hook이 실제로 동작을 막지 못하던 버그를 고친 뒤(v2.1.294) hook 실패 시 동작을 막는 `onFailure:"block"` 옵션(v2.1.295)이 바로 뒤따랐습니다. 같은 날 Claude Agent SDK(Python/TS)도 parity 릴리스를 냈습니다. 특이하게 v2.1.290에서 고친 "컨테이너 재시작 후 클라우드 세션 미기동" 수정이 v2.1.293에서 다시 되돌려졌습니다. Adopt의 "제한된 범위의 코딩 에이전트"(사람 승인 절차) 판단은 hook·guardrail 계층 자체의 신뢰성에 의존하므로, 이번 주 hook 관련 수정 흐름이 그 전제를 직접 뒷받침합니다. (sources/2026-10/2026-10-05.md, sources/2026-10/2026-10-07.md, sources/2026-10/2026-10-08.md, sources/2026-10/2026-10-09.md)
+- (2026-10-11 추가) Anthropic이 "Claude Frontier Academy"를 공개했습니다(2026-10-02, 원문 확인). $100M을 투입해 2027년 말까지 'Frontier Deployed Engineer' 1만 명을 양성하는 프로그램으로, 의료 레지던트 모델을 본떠 집중 교육 → 12주 레지던시 → 최종 평가 구조를 거칩니다. Accenture·Deloitte·McKinsey·Morgan Stanley 등이 초기 참여합니다. 2026-10-02 로그의 Barclays 사례와 나란히, Anthropic이 "모델 성능"보다 "그 모델을 실제 프로덕션에 배치할 수 있는 인력"을 병목으로 보고 있다는 신호입니다. (sources/2026-10/2026-10-05.md)
 
 ## Patterns
 
@@ -96,6 +98,11 @@ last_reviewed: 2026-10-04
 - [Claude Code v2.1.286](../../sources/2026-10/2026-10-01.md#anthropic-claude-code-v21286-배포--권한-프롬프트-카운터-다수-자격증명세션mcp-안정성-수정)
 - [Claude Code v2.1.287](../../sources/2026-10/2026-10-02.md#anthropic-claude-code-v21287-배포--claude-mods-플러그인-체계-에이전트-뷰-필터-다수-mcpremote-control-안정성-수정)
 - [Anthropic·Barclays 전사 확산 계약](../../sources/2026-10/2026-10-02.md#anthropicbarclays-claude-codeclaude-모델-전사-확산-계약-공개--2026년-말-개발자-50-claude-code-도입-목표-기존-colleague-knowledge-assistant-16만명-사용검색-100만건)
+- [Claude Code v2.1.288~289](../../sources/2026-10/2026-10-05.md#anthropic-claude-code-v21288289-배포--모드플러그인-설정-기능-확장-다수-플러그인세션-안정성-수정)
+- [Claude Frontier Academy](../../sources/2026-10/2026-10-05.md#anthropic-claude-frontier-academy-공개--100m-투자로-2027년-말까지-frontier-deployed-engineer-1만-명-양성-accenturedeloittemckinseymorgan-stanley-등-초기-참여)
+- [Claude Code v2.1.290~292](../../sources/2026-10/2026-10-07.md#anthropic-claude-code-v21290292-배포--mod-훅-확장캐싱워크플로-에이전트-spawn-claude-plugin-install-마켓플레이스-지정-agent-tool-effort-파라미터-두-차례-회귀-수정)
+- [Claude Code v2.1.293](../../sources/2026-10/2026-10-08.md#anthropic-claude-code-v21293-배포--mod-isdeferred-도구-등록-플래그-subagent-타입-구분-필드-추가-다수-안정성-수정과-21290-수정-1건-되돌림)
+- [Claude Code v2.1.294~295 / Agent SDK parity](../../sources/2026-10/2026-10-09.md#anthropic-claude-code-v21294295-배포--instruction-기반-hook-우회-버그-수정-hook-onfailureblock-추가-claude-agent-sdkpythonts도-동시-parity-릴리스)
 
 ## Open Questions
 
