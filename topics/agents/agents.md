@@ -1,7 +1,7 @@
 ---
 title: "Agents"
 topic: agents
-last_reviewed: 2026-10-11
+last_reviewed: 2026-10-18
 ---
 
 # Agents
@@ -48,6 +48,9 @@ last_reviewed: 2026-10-11
 - (2026-10-04 추가) Anthropic·Barclays가 Claude Code·Claude 모델 전사 확산 계약을 공개했습니다(2026-10-01, 원문 확인). 2026년 말까지 개발자 50%, 2027년에는 대다수가 Claude Code를 쓰도록 하는 목표를 밝혔고, 기존 Colleague Knowledge Assistant는 1.6만명 이상이 사용하며 검색 100만 건 이상을 처리했으며 Global Markets 부문은 하루 12만 건의 이메일을 처리한다고 밝혔습니다. 거버넌스·보안 통제를 명시한 전사 배포 사례로 Adopt의 "제한된 범위의 코딩 에이전트" 판단과 가까운 방향이지만, 구체적인 비용·시간 절감 수치는 이번 발표에 포함되지 않았습니다. (sources/2026-10/2026-10-02.md)
 - (2026-10-11 추가) Claude Code v2.1.288~295가 거의 매일 단위로 배포되며 하네스 안정성·mod/plugin·subagent 기능이 계속 확장됐습니다. mod용 `$.ui.selection()`, MCP 재인증 프롬프트, `--marketplace` 지정 설치, Agent tool `effort` 파라미터, `agent.spawn` mod 훅의 workflow agent 지원, `$.tool.register`의 `isDeferred` 플래그, subagent 타입 구분 필드가 추가됐고, hook이 실제로 동작을 막지 못하던 버그를 고친 뒤(v2.1.294) hook 실패 시 동작을 막는 `onFailure:"block"` 옵션(v2.1.295)이 바로 뒤따랐습니다. 같은 날 Claude Agent SDK(Python/TS)도 parity 릴리스를 냈습니다. 특이하게 v2.1.290에서 고친 "컨테이너 재시작 후 클라우드 세션 미기동" 수정이 v2.1.293에서 다시 되돌려졌습니다. Adopt의 "제한된 범위의 코딩 에이전트"(사람 승인 절차) 판단은 hook·guardrail 계층 자체의 신뢰성에 의존하므로, 이번 주 hook 관련 수정 흐름이 그 전제를 직접 뒷받침합니다. (sources/2026-10/2026-10-05.md, sources/2026-10/2026-10-07.md, sources/2026-10/2026-10-08.md, sources/2026-10/2026-10-09.md)
 - (2026-10-11 추가) Anthropic이 "Claude Frontier Academy"를 공개했습니다(2026-10-02, 원문 확인). $100M을 투입해 2027년 말까지 'Frontier Deployed Engineer' 1만 명을 양성하는 프로그램으로, 의료 레지던트 모델을 본떠 집중 교육 → 12주 레지던시 → 최종 평가 구조를 거칩니다. Accenture·Deloitte·McKinsey·Morgan Stanley 등이 초기 참여합니다. 2026-10-02 로그의 Barclays 사례와 나란히, Anthropic이 "모델 성능"보다 "그 모델을 실제 프로덕션에 배치할 수 있는 인력"을 병목으로 보고 있다는 신호입니다. (sources/2026-10/2026-10-05.md)
+- (2026-10-18 추가) Claude Code v2.1.296(10-09)~v2.1.301(10-15)이 매일 단위로 이어지며, 백그라운드 전환 시 실행 중이던 turn·`!` 명령을 "보이지 않게 끝까지 실행"하지 않고 중단시키는 안전장치가 v2.1.296에서 도입된 뒤 v2.1.301에서 다시 보강됐습니다. 같은 구간에 OpenTelemetry `tool_decision` 이벤트가 분류기 결정(`classifier_verdict`/`classifier_category`)과 권한 규칙 결정(`permission_mode`)을 구분해 노출하도록 바뀌었고, 200K 토큰을 넘는 대화가 약 54분 idle 상태면 prompt cache 만료 전에 자동 압축되는 "idle compaction"이 추가됐습니다. Adopt의 "제한된 범위의 코딩 에이전트"(사람 승인 절차) 판단이 전제하는 "감시되지 않는 실행을 줄인다"는 방향이 백그라운드 실행·분류기 투명성 두 축에서 계속 구체화되고 있습니다. (sources/2026-10/2026-10-12.md#anthropic-claude-code-v21296-배포--sonnet-55-cache-read-가격-010m-반영-mcp-tool-설명-길이-제한-20484096자-백그라운드-전환-시-실행-중-명령-중단-처리, sources/2026-10/2026-10-15.md#anthropic-claude-code-v21299300-배포-claude-agent-sdkpython-v02166167-동시-parity--유휴-압축-gzip-요청-opentelemetry-cache-토큰-속성-추가, sources/2026-10/2026-10-16.md#anthropic-claude-code-v21301-배포--사용량-한도-임박-시-재시도-중단-opentelemetry-도구-분류기-속성-추가-백그라운드-실행-중-명령-중단-안전장치-강화)
+- (2026-10-18 추가) Claude Code 저장소에 HIPAA 환경용 `managed-settings.json`/`managed-mcp.json` 예제(`hipaa-baseline.json`, `managed-mcp.lockdown.json`)가 추가됐습니다(커밋 2026-10-07, 원문 확인). Bash를 샌드박스 전용으로 제한하고 네트워크를 allowlist로 묶으며 자격증명·환경변수를 숨기고 OTel로 보내는 이벤트의 prompt/response/tool 내용을 `<REDACTED>`로 치환합니다. README는 스스로 "출발점일 뿐 컴플라이언스 보증이 아니다"라고 명시합니다. Hold의 "PHI, PII, confidential data를 공개 LLM에 직접 넣는 사용"을 막기 위한 실무적 템플릿이 벤더 쪽에서 나온 사례입니다. (sources/2026-10/2026-10-14.md#anthropic-claude-code-hipaa-환경용-managed-settings-예제-추가--examplesmanaged-settings에-hipaa-baselinejson--managed-mcplockdownjson--readme)
+- (2026-10-18 추가) Claude Developer Platform에 Managed Agents "Dynamic workflows"(beta)가 공개됐습니다(2026-10-09, 원문 확인, anthropic-sdk-python v1.13.0과 교차 확인). `multiagent_20261001` 설정으로 활성화하며, 에이전트가 여러 에이전트를 단계(phase)로 나눠 실행하는 workflow를 스스로 작성하고 `workflow_run.*` 이벤트로 추적합니다. Trial의 "subagent orchestration" 실험이 애플리케이션 레이어(LangChain 미들웨어 등)에서 벤더 네이티브 API 레이어로 내려오는 흐름을 보여주지만, 베타 단계라 실패 처리·비용 관측의 투명성은 아직 확인되지 않았습니다. (sources/2026-10/2026-10-15.md#claude-developer-platform-managed-agents-dynamic-workflowsbeta-공개--다수-에이전트를-단계phase로-묶어-실행하는-멀티에이전트-오케스트레이션-api)
 
 ## Patterns
 
@@ -103,6 +106,11 @@ last_reviewed: 2026-10-11
 - [Claude Code v2.1.290~292](../../sources/2026-10/2026-10-07.md#anthropic-claude-code-v21290292-배포--mod-훅-확장캐싱워크플로-에이전트-spawn-claude-plugin-install-마켓플레이스-지정-agent-tool-effort-파라미터-두-차례-회귀-수정)
 - [Claude Code v2.1.293](../../sources/2026-10/2026-10-08.md#anthropic-claude-code-v21293-배포--mod-isdeferred-도구-등록-플래그-subagent-타입-구분-필드-추가-다수-안정성-수정과-21290-수정-1건-되돌림)
 - [Claude Code v2.1.294~295 / Agent SDK parity](../../sources/2026-10/2026-10-09.md#anthropic-claude-code-v21294295-배포--instruction-기반-hook-우회-버그-수정-hook-onfailureblock-추가-claude-agent-sdkpythonts도-동시-parity-릴리스)
+- [Claude Code v2.1.296](../../sources/2026-10/2026-10-12.md#anthropic-claude-code-v21296-배포--sonnet-55-cache-read-가격-010m-반영-mcp-tool-설명-길이-제한-20484096자-백그라운드-전환-시-실행-중-명령-중단-처리)
+- [Claude Code HIPAA managed-settings 예제](../../sources/2026-10/2026-10-14.md#anthropic-claude-code-hipaa-환경용-managed-settings-예제-추가--examplesmanaged-settings에-hipaa-baselinejson--managed-mcplockdownjson--readme)
+- [Claude Code v2.1.299~300 / Agent SDK parity](../../sources/2026-10/2026-10-15.md#anthropic-claude-code-v21299300-배포-claude-agent-sdkpython-v02166167-동시-parity--유휴-압축-gzip-요청-opentelemetry-cache-토큰-속성-추가)
+- [Managed Agents Dynamic workflows(beta)](../../sources/2026-10/2026-10-15.md#claude-developer-platform-managed-agents-dynamic-workflowsbeta-공개--다수-에이전트를-단계phase로-묶어-실행하는-멀티에이전트-오케스트레이션-api)
+- [Claude Code v2.1.301](../../sources/2026-10/2026-10-16.md#anthropic-claude-code-v21301-배포--사용량-한도-임박-시-재시도-중단-opentelemetry-도구-분류기-속성-추가-백그라운드-실행-중-명령-중단-안전장치-강화)
 
 ## Open Questions
 

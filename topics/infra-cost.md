@@ -1,7 +1,7 @@
 ---
 title: "Infra / Cost"
 topic: infra-cost
-last_reviewed: 2026-10-11
+last_reviewed: 2026-10-18
 ---
 
 # Infra / Cost
@@ -17,6 +17,7 @@ last_reviewed: 2026-10-11
 - (2026-09-27 갱신) 벤더 가격 인하 축에서 새 사례가 나왔습니다. Anthropic Claude Opus 5.5(2026-09-22, 원문 확인)는 Opus 5 대비 약 40% 낮은 비용(입력 $4/출력 $20, 캐시 읽기 $0.20 per Mtok, 60% 인하)에 유사 성능을 제공한다고 밝혔습니다. Snapshot의 "비용 효율 경쟁"이 flagship 모델 라인에서도 계속되고 있다는 근거입니다. (sources/2026-09/2026-09-23.md)
 - (2026-10-04 갱신) Anthropic·Barclays의 전사 확산 계약(2026-10-01, 원문 확인)은 Colleague Knowledge Assistant 1.6만명 이상 사용·검색 100만 건+, Global Markets 일일 이메일 12만 건 처리 같은 사용 규모 수치를 공개했지만, 구체적인 비용 절감액이나 절감 시간 수치는 포함하지 않았습니다. Evaluation Questions의 "같은 작업을 같은 품질로 끝내는 데 드는 총비용은 얼마인가"에 대해, 벤더 발표가 사용 규모는 보여주면서도 ROI 수치는 비워두는 패턴이 반복되고 있다는 점을 보여줍니다. (sources/2026-10/2026-10-02.md)
 - (2026-10-11 갱신) vLLM v0.31.0(2026-10-05 태그, 원문 확인)이 `vllm preload`(양자화 가중치를 GPU 메모리에 유지하는 캐시 데몬으로 엔진 재시작 로딩 시간 절감)와 실험적 CRIU 기반 엔진 스냅샷(`vllm snapshot create/restore`)을 추가했습니다. DeepSeek-V4.1-Flash용 FlashMLA 어텐션 기본화, Model Runner V2의 드래프트 모델 기반 투기적 디코딩 지원도 포함됩니다. 재시작 가속·투기적 디코딩 모두 "서빙 소프트웨어 자체가 비용 효율에 직접 영향을 준다"는 이 축의 기존 판단을 잇는 사례입니다. (sources/2026-10/2026-10-09.md)
+- (2026-10-18 갱신) Claude Opus 5.5의 Fast mode가 research preview를 벗어나 정식 출시(GA)됐습니다(2026-10-15, 원문 확인). 더 이상 접근 신청이나 베타 헤더가 필요 없고, 모든 사용량 tier에 기본 rate limit이 생겼습니다(Microsoft Foundry 경로도 포함). Claude Opus 5·Opus 4.8의 Fast mode는 여전히 research preview로 남습니다. Evaluation Questions의 "reasoning effort와 context 길이를 조절할 때 비용 대비 품질 곡선" 실험이 비용·속도를 함께 고려하는 실무 단계로 넘어가고 있다는 신호입니다. (sources/2026-10/2026-10-16.md#claude-developer-platform-릴리스-노트2026-10-15--claude-opus-55-fast-mode-정식-출시베타-해제-compliance-api에-사용자별-커스텀-지침-조회-기능-추가)
 
 ## Notable Systems
 
@@ -47,6 +48,7 @@ last_reviewed: 2026-10-11
 - [Claude Opus 5.5](../sources/2026-09/2026-09-23.md#anthropic-claude-opus-55-공개--fable-51급-성능을-opus-5-대비-40-낮은-비용에)
 - [Anthropic·Barclays 전사 확산 계약](../sources/2026-10/2026-10-02.md#anthropicbarclays-claude-codeclaude-모델-전사-확산-계약-공개--2026년-말-개발자-50-claude-code-도입-목표-기존-colleague-knowledge-assistant-16만명-사용검색-100만건)
 - [vLLM v0.31.0 릴리스](../sources/2026-10/2026-10-09.md#vllm-v0310-릴리스--vllm-preload로-재시작-가속-deepseek-v41-flash-성능-최적화-model-runner-v2-드래프트-모델-투기적-디코딩)
+- [Claude Opus 5.5 Fast mode GA](../sources/2026-10/2026-10-16.md#claude-developer-platform-릴리스-노트2026-10-15--claude-opus-55-fast-mode-정식-출시베타-해제-compliance-api에-사용자별-커스텀-지침-조회-기능-추가)
 
 ## Open Questions
 

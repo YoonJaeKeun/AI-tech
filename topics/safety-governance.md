@@ -1,7 +1,7 @@
 ---
 title: "Safety / Governance"
 topic: safety-governance
-last_reviewed: 2026-10-11
+last_reviewed: 2026-10-18
 ---
 
 # Safety / Governance
@@ -31,6 +31,10 @@ AI 안전성, 거버넌스, 규제, 배포 통제, 책임 있는 사용을 정�
 - model output은 source, version, prompt, reviewer를 함께 기록합니다.
 - post-deployment monitoring과 incident log를 처음부터 설계합니다.
 - (2026-10-11 추가) Anthropic이 Project Glasswing과 기존 Cyber Verification Program(CVP)을 통합해 Defense/Red Team/Specialized 3단계 접근 등급으로 재편했습니다(2026-10-06, 원문 확인). 자격을 갖춘 보안 전문가에게 Claude Opus 5.5·Sonnet 5.5·Mythos 5.1 등 안전장치를 줄인 모델을 신청·심사 기반으로 등급별 제공합니다. Project Glasswing 참여 기관은 2026년 4~7월 사이 최소 129,000건의 취약점을 발견했고 그중 33,000건 이상이 critical/high-severity였다고 밝혔습니다(벤더 자체 발표, 제3자 검증 없음). Risk Areas의 "Cyber and bio capability" 판단과 직접 맞닿은, 신청·심사 기반 등급별 접근 통제의 구체 사례입니다. (sources/2026-10/2026-10-07.md)
+- (2026-10-18 추가) Anthropic이 2026 Usage Policy를 개정했습니다(2026-10-08 발표, 발효 2026-11-12, 원문 확인). 비동의 추적·수사·기소 결정 지원·감시 도구 제작 금지를 명문화하고, 선거 섹션은 "민주적 절차를 저해하지 않음"으로 범위를 좁혀 개인화된 투표·캠페인 타겟팅에 대한 포괄적 금지는 제거했습니다(기만·개인정보 오용 의존 타겟팅은 여전히 금지). 가장 중요한 변화는 Claude가 자율적으로 물리적 행동을 하는 하드웨어에 연결될 때 자격을 갖춘 운영자가 장비를 멈출 수 있어야 하고 연결이 끊기면 안전 상태를 유지해야 한다는 요구 신설로, Risk Areas의 "Irreversible release"·Operating Principles의 고위험 action human approval 전제를 로봇·물리 기기 영역까지 명시적으로 확장한 사례입니다. (sources/2026-10/2026-10-12.md#anthropic-2026-usage-policy-개정--감시추적-금지-명문화-선거-섹션-축소-자율-물리-행동-연계-기기에-대한-요구사항-신설)
+- (2026-10-18 추가) Anthropic이 "Cyber Mission"을 출범했습니다(2026-10-08, 원문 확인). Critical Infrastructure Defense Program(CIDP)은 전력망·수자원·교통망 등 운영기술(OT)·정부 시스템 보안을, OSS Scanner는 널리 쓰이는 오픈소스 코드의 취약점을 찾아 패치를 제안하는 무료 주기적 스캔 서비스로 Python/Apache Software Foundation 등에 자금을 지원합니다. 위 CVP(방어 전문가에게 안전장치를 줄인 모델을 등급별로 제공)와 나란히, Risk Areas의 "Cyber and bio capability"에서 방어적 활용 쪽을 국가 중요 인프라·오픈소스 생태계까지 제도화하는 축입니다. (sources/2026-10/2026-10-12.md#anthropic-cyber-mission-출범--critical-infrastructure-defense-program과-oss-scanner로-방어자-지원을-장기-축으로-공식화)
+- (2026-10-18 추가) Anthropic이 2026 미국 중간선거 대비 선거 안전장치 현황을 공개했습니다(2026-10-14, 원문 확인). 자체 평가로 정치 비편향성 99%(외부 3개 기관이 미·영·인도 2,000명 이상으로 검토), 선거 정책 위반율 0.002%(2026-09-21~27 샘플)를 주장하면서도, "단일 악성 요청은 잘 거부하지만 여러 개의 무해해 보이는 작업으로 쪼갠 악성 캠페인은 놓칠 수 있다"는 점을 ISD·McCain Institute 테스트로 스스로 인정하고 다단계 오용 탐지 분류기를 추가했습니다. 바로 위 Usage Policy 개정(선거 타겟팅 금지 완화)에 구체적 집행 수치를 더하는 후속 발표이며, "쪼개진 악성 캠페인 탐지"는 Risk Areas의 "Evaluation gap"(controlled benchmark와 실제 deployment 차이)과 같은 논리를 보여줍니다. (sources/2026-10/2026-10-15.md#anthropic-preparing-for-the-2026-us-midterms--선거-안전장치-현황-정치-비편향성-99-turbovote-연동-다단계-오용-탐지-분류기-추가)
+- (2026-10-18 추가) Anthropic이 독립 평가기관 접근 체계를 공개했습니다(2026-10-15, 원문 확인). METR 직원 6명이 회사 하드웨어·사무공간과 Anthropic 내부 위험 평가팀에 준하는 시스템 접근권을 받고 상주하며, 고객 데이터·법적 특권 정보·모델 아키텍처 정보를 제외하고 공유가 권장됩니다. Anthropic은 METR의 출판을 거부할 수 없지만 좁게 정의된 범주에서 수정(redaction)을 요구할 수 있고, METR은 그 수정이 정당했는지 의견을 공개할 수 있습니다. 평가기관 접근을 Tier 1(좁은 범위, 출판 사전승인 필요, 예: SecureBio)/Tier 2(사전승인 없이 출판 가능, 특정 정보 삭제 요구 가능)/Tier 3(METR, 직원급 접근) 3단계로 구분합니다. Operating Principles의 "model output은 source·version·prompt·reviewer를 함께 기록"하는 감사 전제를, 모델 개발사 자신에 대한 외부 감시로 확장한 사례입니다. 다만 METR의 실제 출판물은 아직 없어 "출판 거부 불가" 조건이 실제로 지켜지는지는 추후 확인이 필요합니다. (sources/2026-10/2026-10-16.md#anthropic-an-update-on-independent-evaluators--metr에-직원급-내부-접근권-부여-3단계-평가기관-접근-프레임워크-공개)
 
 ## Sources
 
@@ -40,6 +44,10 @@ AI 안전성, 거버넌스, 규제, 배포 통제, 책임 있는 사용을 정�
 - [FDA AI-Enabled Medical Devices](../sources/2026-07/2026-07-09.md#fda-ai-enabled-medical-devices)
 - [The New MCP Roadmap](../sources/2026-08/2026-08-24.md#the-new-mcp-roadmap)
 - [Cyber Verification Program 확장 공개](../sources/2026-10/2026-10-07.md#anthropic-cyber-verification-program-확장-공개--project-glasswing과-기존-cvp를-통합해-defensered-teamspecialized-3단계-접근-등급으로-재편)
+- [2026 Usage Policy 개정](../sources/2026-10/2026-10-12.md#anthropic-2026-usage-policy-개정--감시추적-금지-명문화-선거-섹션-축소-자율-물리-행동-연계-기기에-대한-요구사항-신설)
+- [Anthropic Cyber Mission 출범](../sources/2026-10/2026-10-12.md#anthropic-cyber-mission-출범--critical-infrastructure-defense-program과-oss-scanner로-방어자-지원을-장기-축으로-공식화)
+- [Preparing for the 2026 US midterms](../sources/2026-10/2026-10-15.md#anthropic-preparing-for-the-2026-us-midterms--선거-안전장치-현황-정치-비편향성-99-turbovote-연동-다단계-오용-탐지-분류기-추가)
+- [An update on independent evaluators](../sources/2026-10/2026-10-16.md#anthropic-an-update-on-independent-evaluators--metr에-직원급-내부-접근권-부여-3단계-평가기관-접근-프레임워크-공개)
 
 ## Open Questions
 
