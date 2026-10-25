@@ -1,7 +1,7 @@
 ---
 title: "Clinical / Healthcare AI"
 topic: clinical-healthcare
-last_reviewed: 2026-07-09
+last_reviewed: 2026-10-25
 ---
 
 # Clinical / Healthcare AI
@@ -44,6 +44,7 @@ last_reviewed: 2026-07-09
 - [FDA AI-Enabled Medical Devices](../sources/2026-07/2026-07-09.md#fda-ai-enabled-medical-devices)
 - [State of Clinical AI Report 2026](../sources/2026-07/2026-07-09.md#state-of-clinical-ai-report-2026)
 - [Stanford AI Index 2026](../sources/2026-07/2026-07-09.md#the-2026-ai-index-report)
+- [Anthropic 생명과학 Guest Investigator 공개 모집](../sources/2026-10/2026-10-23.md#anthropic-생명과학-분야-guest-investigator-공개-모집)
 
 ## Open Questions
 

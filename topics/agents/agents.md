@@ -1,7 +1,7 @@
 ---
 title: "Agents"
 topic: agents
-last_reviewed: 2026-10-18
+last_reviewed: 2026-10-25
 ---
 
 # Agents
@@ -51,6 +51,8 @@ last_reviewed: 2026-10-18
 - (2026-10-18 추가) Claude Code v2.1.296(10-09)~v2.1.301(10-15)이 매일 단위로 이어지며, 백그라운드 전환 시 실행 중이던 turn·`!` 명령을 "보이지 않게 끝까지 실행"하지 않고 중단시키는 안전장치가 v2.1.296에서 도입된 뒤 v2.1.301에서 다시 보강됐습니다. 같은 구간에 OpenTelemetry `tool_decision` 이벤트가 분류기 결정(`classifier_verdict`/`classifier_category`)과 권한 규칙 결정(`permission_mode`)을 구분해 노출하도록 바뀌었고, 200K 토큰을 넘는 대화가 약 54분 idle 상태면 prompt cache 만료 전에 자동 압축되는 "idle compaction"이 추가됐습니다. Adopt의 "제한된 범위의 코딩 에이전트"(사람 승인 절차) 판단이 전제하는 "감시되지 않는 실행을 줄인다"는 방향이 백그라운드 실행·분류기 투명성 두 축에서 계속 구체화되고 있습니다. (sources/2026-10/2026-10-12.md#anthropic-claude-code-v21296-배포--sonnet-55-cache-read-가격-010m-반영-mcp-tool-설명-길이-제한-20484096자-백그라운드-전환-시-실행-중-명령-중단-처리, sources/2026-10/2026-10-15.md#anthropic-claude-code-v21299300-배포-claude-agent-sdkpython-v02166167-동시-parity--유휴-압축-gzip-요청-opentelemetry-cache-토큰-속성-추가, sources/2026-10/2026-10-16.md#anthropic-claude-code-v21301-배포--사용량-한도-임박-시-재시도-중단-opentelemetry-도구-분류기-속성-추가-백그라운드-실행-중-명령-중단-안전장치-강화)
 - (2026-10-18 추가) Claude Code 저장소에 HIPAA 환경용 `managed-settings.json`/`managed-mcp.json` 예제(`hipaa-baseline.json`, `managed-mcp.lockdown.json`)가 추가됐습니다(커밋 2026-10-07, 원문 확인). Bash를 샌드박스 전용으로 제한하고 네트워크를 allowlist로 묶으며 자격증명·환경변수를 숨기고 OTel로 보내는 이벤트의 prompt/response/tool 내용을 `<REDACTED>`로 치환합니다. README는 스스로 "출발점일 뿐 컴플라이언스 보증이 아니다"라고 명시합니다. Hold의 "PHI, PII, confidential data를 공개 LLM에 직접 넣는 사용"을 막기 위한 실무적 템플릿이 벤더 쪽에서 나온 사례입니다. (sources/2026-10/2026-10-14.md#anthropic-claude-code-hipaa-환경용-managed-settings-예제-추가--examplesmanaged-settings에-hipaa-baselinejson--managed-mcplockdownjson--readme)
 - (2026-10-18 추가) Claude Developer Platform에 Managed Agents "Dynamic workflows"(beta)가 공개됐습니다(2026-10-09, 원문 확인, anthropic-sdk-python v1.13.0과 교차 확인). `multiagent_20261001` 설정으로 활성화하며, 에이전트가 여러 에이전트를 단계(phase)로 나눠 실행하는 workflow를 스스로 작성하고 `workflow_run.*` 이벤트로 추적합니다. Trial의 "subagent orchestration" 실험이 애플리케이션 레이어(LangChain 미들웨어 등)에서 벤더 네이티브 API 레이어로 내려오는 흐름을 보여주지만, 베타 단계라 실패 처리·비용 관측의 투명성은 아직 확인되지 않았습니다. (sources/2026-10/2026-10-15.md#claude-developer-platform-managed-agents-dynamic-workflowsbeta-공개--다수-에이전트를-단계phase로-묶어-실행하는-멀티에이전트-오케스트레이션-api)
+- (2026-10-25 추가) Claude Code v2.1.302~309(10-16~10-22)가 거의 매일 단위로 이어지며, 안전·격리 관련 변경이 두 방향으로 동시에 나타났습니다. 한편에는 우회 가능성을 넓히는 변경(fork subagent가 `claude -p`·Agent SDK·desktop app·VS Code에서 기본 활성화, `sandbox.allowNestedUserNamespaces`로 Linux 샌드박스 안 user namespace 생성 허용)이, 다른 한편에는 우회를 막거나 감사 가능하게 만드는 변경(mod `tool.check`의 `decider: "person"`, 권한·안전 점검·hook·샌드박스의 모든 차단/확인/반송 이벤트를 남기는 `claude_code.safety_event` OpenTelemetry 이벤트, 샌드박스 셸 시작 파일 격리·`--mcp-config` 설정 파일 변조 방지·`claude ultrareview`의 workspace trust 요구 등 v2.1.308~309의 보안 수정 다수)가 함께 나타났습니다. 조직 관리자가 전사 기본 Code Review 수준(Quick/Standard/Deep)을 고르고 저장소별로 재지정할 수 있게 된 것(v2.1.304)도 Adopt의 "사람 승인 절차가 있는 저장소 작업" 전제를 조직 레벨에서 구체화합니다. (sources/2026-10/2026-10-19.md, sources/2026-10/2026-10-20.md, sources/2026-10/2026-10-21.md, sources/2026-10/2026-10-22.md, sources/2026-10/2026-10-23.md)
+- (2026-10-25 추가) Anthropic이 Agent Skills 표준(이름·로고·GitHub organization·agentskills.io 도메인)을 Agentic AI Foundation(AAIF)에 이관한다고 발표했습니다(2026-10-22, 원문 확인). 2026-08-24에 기록한 "MCP가 AAIF로 넘어갔다"는 관찰에 이어, 에이전트 생태계의 두 핵심 표준(MCP, Agent Skills)이 모두 같은 벤더 중립 거버넌스 아래로 수렴하는 패턴이 확인됐습니다. 발표 시점 기준 약 100만 개 skill 공개·약 2.8억 회 설치, 70개 이상 플랫폼 통합이라는 수치는 Anthropic 자체 발표로 독립 집계로는 교차 확인되지 않았습니다. (sources/2026-10/2026-10-23.md)
 
 ## Patterns
 
@@ -111,6 +113,12 @@ last_reviewed: 2026-10-18
 - [Claude Code v2.1.299~300 / Agent SDK parity](../../sources/2026-10/2026-10-15.md#anthropic-claude-code-v21299300-배포-claude-agent-sdkpython-v02166167-동시-parity--유휴-압축-gzip-요청-opentelemetry-cache-토큰-속성-추가)
 - [Managed Agents Dynamic workflows(beta)](../../sources/2026-10/2026-10-15.md#claude-developer-platform-managed-agents-dynamic-workflowsbeta-공개--다수-에이전트를-단계phase로-묶어-실행하는-멀티에이전트-오케스트레이션-api)
 - [Claude Code v2.1.301](../../sources/2026-10/2026-10-16.md#anthropic-claude-code-v21301-배포--사용량-한도-임박-시-재시도-중단-opentelemetry-도구-분류기-속성-추가-백그라운드-실행-중-명령-중단-안전장치-강화)
+- [Claude Code v2.1.302~303](../../sources/2026-10/2026-10-19.md#anthropic-claude-code-v21302303-배포--fork-subagent-기본-활성화-auto-mode-분류기-모델-분리-설정-read-도구-128mb-이미지-상한)
+- [Claude Code v2.1.304](../../sources/2026-10/2026-10-20.md#anthropic-claude-code-v21304-배포--code-review-레벨quickstandarddeep-mod-toolcheck의-decider-person-auto-mode-setup-전-플랫폼-확대)
+- [Claude Code v2.1.305](../../sources/2026-10/2026-10-21.md#anthropic-claude-code-v21305-배포--sandboxallownestedusernamespaces-retry-watchdog의-usage-limit-재확인-toolsearch-미지원-게이트웨이-회귀-수정)
+- [Claude Code v2.1.306~307](../../sources/2026-10/2026-10-22.md#anthropic-claude-code-v21306307-배포--claude_codesafety_event-opentelemetry-이벤트-claude-api-api-version-고정-mcp-중복-호출-수정)
+- [Agent Skills를 AAIF에 이관](../../sources/2026-10/2026-10-23.md#anthropic-agent-skills-표준을-agentic-ai-foundationaaif에-이관-발표)
+- [Claude Code v2.1.308~309](../../sources/2026-10/2026-10-23.md#anthropic-claude-code-v21308309-배포--샌드박스-우회-경로-다수-수정-ultrareview-workspace-trust-요구-github-멘션-오발송-수정)
 
 ## Open Questions
 
