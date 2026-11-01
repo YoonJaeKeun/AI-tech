@@ -1,7 +1,7 @@
 ---
 title: "Open Source Ecosystem"
 topic: open-source
-last_reviewed: 2026-10-25
+last_reviewed: 2026-11-01
 ---
 
 # Open Source Ecosystem
@@ -19,6 +19,7 @@ open-weight 모델, 주요 프레임워크, 도구 생태계와 관련된 누적
 - (2026-10-11 갱신) Hugging Face Transformers v5.19.0(2026-10-06, 원문 확인, confidence: medium — 발행 연도는 인접 릴리스로 추정)이 Google EmbeddingGemma2(멀티모달 임베딩 모델)를 추가했습니다. 텍스트·이미지·오디오·비디오를 하나의 768차원 벡터 공간에 넣고 Matryoshka 표현 학습으로 512·256·128차원까지 잘라 쓸 수 있습니다. 주요 프레임워크가 신규 멀티모달 임베딩 모델을 바로 통합하는 속도를 보여주는 사례로, llama.cpp의 신모델 당일 지원 패턴과 같은 결입니다. (sources/2026-10/2026-10-09.md)
 - (2026-10-18 갱신) 로컬 추론 생태계에서 두 가지 흐름이 동시에 확인됐습니다. Ollama v0.40.1~v0.40.5-rc0(2026-10-07~14, 원문 확인)은 `ollama run --ask`로 decision model을 CLI에서 바로 쓸 수 있게 했고(v0.40.0부터 Apple Silicon 기본 런타임이 된 MLX와 함께), llama.cpp v0.7.0(2026-10-15, 원문 확인)은 LiliCorr 추측 디코딩·GLM5-Next용 multi-token prediction과 `--moe-cache-mib`(GPU LRU 캐시로 MoE 디코딩 최대 약 2.2배 가속) 옵션을 추가하며 build 번호(bXXXXX) 체계와 나란히 semantic versioning 태그를 이어갔습니다. "decision model" 개념이 벤더 API 레이어를 넘어 로컬 CLI·서빙 엔진까지 확산되고 있다는 관찰을 더합니다. (sources/2026-10/2026-10-15.md#ollama-v0401v0405-rc0--decision-model-cli-통합ollama-run---ask-apple-mlx-가속-확대-멀티모달-임베딩, sources/2026-10/2026-10-16.md#llamacpp-v070-릴리스--lilicorr-추측-디코딩mtp---moe-cache-mib-gpu-lru-캐시최대-22배-가속-서버-기본-포트-80809931-변경)
 - (2026-10-25 갱신) decision model이 로컬 CLI 통합을 넘어 벤더 자체 클라우드 서비스로 확장됩니다. Ollama v0.40.6(2026-10-16, 원문 확인)에서 decision model `clef`가 Ollama 클라우드 서비스로 정식 출시됐고(10-14 로그가 기록한 v0.40.5의 클라우드 제공 시작에 이어짐), v0.40.7-rc0(2026-10-18)은 Responses API의 effort 설정을 non-thinking 모델에도 허용했습니다. "decision model이 로컬 오픈소스 런타임까지 확산된다"는 기존 관찰이 로컬-클라우드 하이브리드 서빙 쪽으로 한 단계 더 나아간 사례입니다. (sources/2026-10/2026-10-19.md#ollama-v0406v0407-rc0--decision-modelclef을-ollama-클라우드로-확장-windows-orphaned-runner-방지-gguf-q2_0-타입-추가)
+- (2026-11-01 갱신) llama.cpp v0.8.0(2026-10-28, 원문 확인)이 build 번호(bXXXXX) 체계와 semantic versioning 태그 병행이라는 기존 관찰(v0.7.0, 10-16 기록)을 이어가며, LiquidAI LFM3 계열 6종(LFM3-1.7B, LFM3-VL-2B, LFM3-Audio-2B 등 멀티모달·omni 포함)을 한 릴리스에서 동시 지원해 "신모델 당일/직후 지원" 패턴이 멀티모달로 확장되는 사례를 더했습니다. `/v1/realtime`·`/tts` 엔드포인트가 새로 추가되며 로컬 추론 엔진이 텍스트 생성을 넘어 실시간 음성 대화·TTS까지 서버 기능으로 흡수하고 있습니다. DeepSeek V4.1 Flash 지원도 이번에 원문으로 공식 확인됐습니다(10-26 로그에서 단일 애그리게이터 출처라 제외했던 교차 확인 공백이 메워짐). CLI에서 `--model`/`-hf` 지정이 필수화된 점은 기존 스크립트 운영에 주의가 필요한 호환성 변화입니다. (sources/2026-10/2026-10-29.md)
 
 ## Watch Items
 
@@ -41,6 +42,7 @@ open-weight 모델, 주요 프레임워크, 도구 생태계와 관련된 누적
 - [Ollama v0.40.1~v0.40.5-rc0](../sources/2026-10/2026-10-15.md#ollama-v0401v0405-rc0--decision-model-cli-통합ollama-run---ask-apple-mlx-가속-확대-멀티모달-임베딩)
 - [llama.cpp v0.7.0 릴리스](../sources/2026-10/2026-10-16.md#llamacpp-v070-릴리스--lilicorr-추측-디코딩mtp---moe-cache-mib-gpu-lru-캐시최대-22배-가속-서버-기본-포트-80809931-변경)
 - [Ollama v0.40.6~v0.40.7-rc0](../sources/2026-10/2026-10-19.md#ollama-v0406v0407-rc0--decision-modelclef을-ollama-클라우드로-확장-windows-orphaned-runner-방지-gguf-q2_0-타입-추가)
+- [llama.cpp v0.8.0 릴리스](../sources/2026-10/2026-10-29.md#ggml-orgllamacpp-v080-릴리스--liquidai-lfm3-계열-모델-지원-v1realtimetts-엔드포인트-추가-cli---model--hf-필수화)
 
 ## Open Questions
 

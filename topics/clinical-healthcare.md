@@ -1,7 +1,7 @@
 ---
 title: "Clinical / Healthcare AI"
 topic: clinical-healthcare
-last_reviewed: 2026-10-25
+last_reviewed: 2026-11-01
 ---
 
 # Clinical / Healthcare AI
@@ -13,6 +13,7 @@ last_reviewed: 2026-10-25
 - 임상 AI는 "모델이 의학 지식을 얼마나 잘 맞히는가"에서 "실제 workflow에서 안전하고 검증 가능하게 작동하는가"로 초점이 이동 중입니다.
 - 진단/치료 의사결정보다 문서화, 행정 업무, 데이터 추출, trial operation 보조가 먼저 안정적으로 적용될 가능성이 큽니다.
 - patient-facing AI는 oversight를 환자에게 기대하면 안 되며, 결과 지표와 harm safeguard가 필요합니다.
+- (2026-11-01 갱신) 기존 Use Cases(문서화·행정 업무·trial operation 보조)보다 한 걸음 더 나간 유형이 확인됐습니다: 전임상(preclinical) 단계의 분자·항체 설계 의사결정에 Claude가 직접 개입하는 사례입니다(Anthropic·제약/바이오 6개사 파트너십). 다만 이는 환자 대상 임상 의사결정이 아니라 연구실 단계 R&D이므로, Constraints의 "prospective evaluation 없이 임상 의사결정을 자동화하는 사용"을 경계하는 기존 판단과 충돌하지는 않습니다. 결과는 모두 Anthropic·파트너사 자체 발표이며 독립 동료 심사나 제3자 재현 검증은 거치지 않았다는 한계가 있습니다. (sources/2026-10/2026-10-28.md)
 
 ## Use Cases
 
@@ -22,6 +23,8 @@ last_reviewed: 2026-10-25
 - 임상 문서 초안 작성과 번역.
 - clinician-facing decision support의 근거 요약.
 - patient-facing history taking, coaching, translation. 단, 안전장치와 escalation 정책이 필요합니다.
+- (2026-11-01 추가) 전임상 R&D 보조: 분자/항체 설계 변이 탐색, 실험 데이터 분석, 규제 제조 문서 검토·초안 작성, 임상시험 계획의 성공 가능성 평가. 환자가 아니라 연구실 단계 대상입니다. (sources/2026-10/2026-10-28.md)
+- (2026-11-01 추가) 기관·재단 단위의 기초 생명과학 연구 가속: 유전체학·생의학 연구기관(Wellcome Sanger Institute, Francis Crick Institute, Gladstone Institutes, gnomAD/Broad Institute, Centre for Population Genomics 등)과의 직접 파트너십. 다만 이 발표에 포함된 20개 파트너 중 상당수(천체물리·기후·수학·화학)는 생명과학 범위 밖이라, 이 항목은 발표의 일부만을 대표합니다. (sources/2026-10/2026-10-29.md)
 
 ## Constraints
 
@@ -45,6 +48,8 @@ last_reviewed: 2026-10-25
 - [State of Clinical AI Report 2026](../sources/2026-07/2026-07-09.md#state-of-clinical-ai-report-2026)
 - [Stanford AI Index 2026](../sources/2026-07/2026-07-09.md#the-2026-ai-index-report)
 - [Anthropic 생명과학 Guest Investigator 공개 모집](../sources/2026-10/2026-10-23.md#anthropic-생명과학-분야-guest-investigator-공개-모집)
+- [Anthropic 신약개발 파트너십 6건 초기 결과](../sources/2026-10/2026-10-28.md#anthropic-신약개발-파트너십-6건의-초기-결과-공개--claude-보조-분자-설계규제문서-검토임상시험-계획-평가-모두-preclinical)
+- [Anthropic AI for Science 재단·연구기관 파트너십 확장](../sources/2026-10/2026-10-29.md#anthropic-ai-for-science-프로그램을-개인-연구자-지원에서-재단연구기관-파트너십으로-확장--sloansimonsnsf-등-20개-기관-공개)
 
 ## Open Questions
 

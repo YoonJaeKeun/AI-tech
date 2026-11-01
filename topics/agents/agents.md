@@ -1,7 +1,7 @@
 ---
 title: "Agents"
 topic: agents
-last_reviewed: 2026-10-25
+last_reviewed: 2026-11-01
 ---
 
 # Agents
@@ -53,6 +53,7 @@ last_reviewed: 2026-10-25
 - (2026-10-18 추가) Claude Developer Platform에 Managed Agents "Dynamic workflows"(beta)가 공개됐습니다(2026-10-09, 원문 확인, anthropic-sdk-python v1.13.0과 교차 확인). `multiagent_20261001` 설정으로 활성화하며, 에이전트가 여러 에이전트를 단계(phase)로 나눠 실행하는 workflow를 스스로 작성하고 `workflow_run.*` 이벤트로 추적합니다. Trial의 "subagent orchestration" 실험이 애플리케이션 레이어(LangChain 미들웨어 등)에서 벤더 네이티브 API 레이어로 내려오는 흐름을 보여주지만, 베타 단계라 실패 처리·비용 관측의 투명성은 아직 확인되지 않았습니다. (sources/2026-10/2026-10-15.md#claude-developer-platform-managed-agents-dynamic-workflowsbeta-공개--다수-에이전트를-단계phase로-묶어-실행하는-멀티에이전트-오케스트레이션-api)
 - (2026-10-25 추가) Claude Code v2.1.302~309(10-16~10-22)가 거의 매일 단위로 이어지며, 안전·격리 관련 변경이 두 방향으로 동시에 나타났습니다. 한편에는 우회 가능성을 넓히는 변경(fork subagent가 `claude -p`·Agent SDK·desktop app·VS Code에서 기본 활성화, `sandbox.allowNestedUserNamespaces`로 Linux 샌드박스 안 user namespace 생성 허용)이, 다른 한편에는 우회를 막거나 감사 가능하게 만드는 변경(mod `tool.check`의 `decider: "person"`, 권한·안전 점검·hook·샌드박스의 모든 차단/확인/반송 이벤트를 남기는 `claude_code.safety_event` OpenTelemetry 이벤트, 샌드박스 셸 시작 파일 격리·`--mcp-config` 설정 파일 변조 방지·`claude ultrareview`의 workspace trust 요구 등 v2.1.308~309의 보안 수정 다수)가 함께 나타났습니다. 조직 관리자가 전사 기본 Code Review 수준(Quick/Standard/Deep)을 고르고 저장소별로 재지정할 수 있게 된 것(v2.1.304)도 Adopt의 "사람 승인 절차가 있는 저장소 작업" 전제를 조직 레벨에서 구체화합니다. (sources/2026-10/2026-10-19.md, sources/2026-10/2026-10-20.md, sources/2026-10/2026-10-21.md, sources/2026-10/2026-10-22.md, sources/2026-10/2026-10-23.md)
 - (2026-10-25 추가) Anthropic이 Agent Skills 표준(이름·로고·GitHub organization·agentskills.io 도메인)을 Agentic AI Foundation(AAIF)에 이관한다고 발표했습니다(2026-10-22, 원문 확인). 2026-08-24에 기록한 "MCP가 AAIF로 넘어갔다"는 관찰에 이어, 에이전트 생태계의 두 핵심 표준(MCP, Agent Skills)이 모두 같은 벤더 중립 거버넌스 아래로 수렴하는 패턴이 확인됐습니다. 발표 시점 기준 약 100만 개 skill 공개·약 2.8억 회 설치, 70개 이상 플랫폼 통합이라는 수치는 Anthropic 자체 발표로 독립 집계로는 교차 확인되지 않았습니다. (sources/2026-10/2026-10-23.md)
+- (2026-11-01 추가) Claude Code v2.1.310~312(10-23~10-27)가 거의 매일 단위로 이어지며 두 흐름이 계속됐습니다. 하나는 거버넌스 세분화입니다: Enterprise custom roles에 Cloud sessions·Remote Control 권한을 추가해 조직이 역할별로 접근을 통제하게 됐고(v2.1.310), hooks를 세션당(서브에이전트 포함) 동시 최대 24개로, timeout을 넘겨 기다린 것도 최대 12개로 제한하는 실행 통제가 추가됐습니다(v2.1.312). Adopt의 "사람 승인 절차가 있는 저장소 작업"과 Hold의 "감사 로그와 rollback 전략이 없는 완전 자율 업무 실행" 경계를 조직 단위에서 구체화하는 방향입니다. 다른 하나는 컨텍스트 예산 관리 견고화입니다: "Prompt is too long" 이후 압축이 base64·SVG 같은 밀도 높은 텍스트를 과도하게 남겨 다음 요청도 실패하던 문제(v2.1.310), 표준 context 세션이 200K 토큰을 넘을 때 멈추지 않고 자동 압축 후 계속하도록 바뀐 변경(v2.1.311), 매우 큰 CLAUDE.md·rules 파일·`@`-include 파일을 시작 부분만 보고 덮어쓰던 문제(v2.1.312)가 연이어 수정되며 Adopt의 LLM 전처리·후처리 경계 설계 판단을 뒷받침합니다. v2.1.312의 WebFetch 오류 메시지 개선(호스트가 resolve되지 않을 때 허용된 네트워크 도메인 밖일 수 있다는 점을 명시)은 이 저장소가 매일 겪는 egress 차단 상황과 직접 맞물리는 변경입니다. (sources/2026-10/2026-10-26.md, sources/2026-10/2026-10-27.md, sources/2026-10/2026-10-28.md)
 
 ## Patterns
 
@@ -119,6 +120,9 @@ last_reviewed: 2026-10-25
 - [Claude Code v2.1.306~307](../../sources/2026-10/2026-10-22.md#anthropic-claude-code-v21306307-배포--claude_codesafety_event-opentelemetry-이벤트-claude-api-api-version-고정-mcp-중복-호출-수정)
 - [Agent Skills를 AAIF에 이관](../../sources/2026-10/2026-10-23.md#anthropic-agent-skills-표준을-agentic-ai-foundationaaif에-이관-발표)
 - [Claude Code v2.1.308~309](../../sources/2026-10/2026-10-23.md#anthropic-claude-code-v21308309-배포--샌드박스-우회-경로-다수-수정-ultrareview-workspace-trust-요구-github-멘션-오발송-수정)
+- [Claude Code v2.1.310](../../sources/2026-10/2026-10-26.md#anthropic-claude-code-v21310-배포--enterprise-custom-roles로-cloud-sessionsremote-control-권한-분리-게이트웨이-호환성-수정)
+- [Claude Code v2.1.311](../../sources/2026-10/2026-10-27.md#claude-code-v21311-배포--200k-토큰-초과-시-자동-압축-self-hosted-runner-idle-hold-플래그-다수-안정성-수정)
+- [Claude Code v2.1.312](../../sources/2026-10/2026-10-28.md#claude-code-v21312-배포--webfetch-차단-호스트-안내-개선-대형-파일-덮어쓰기-방지-hooks-동시-실행-상한)
 
 ## Open Questions
 
