@@ -1,7 +1,7 @@
 ---
 title: "Infra / Cost"
 topic: infra-cost
-last_reviewed: 2026-10-25
+last_reviewed: 2026-11-08
 ---
 
 # Infra / Cost
@@ -19,6 +19,7 @@ last_reviewed: 2026-10-25
 - (2026-10-11 갱신) vLLM v0.31.0(2026-10-05 태그, 원문 확인)이 `vllm preload`(양자화 가중치를 GPU 메모리에 유지하는 캐시 데몬으로 엔진 재시작 로딩 시간 절감)와 실험적 CRIU 기반 엔진 스냅샷(`vllm snapshot create/restore`)을 추가했습니다. DeepSeek-V4.1-Flash용 FlashMLA 어텐션 기본화, Model Runner V2의 드래프트 모델 기반 투기적 디코딩 지원도 포함됩니다. 재시작 가속·투기적 디코딩 모두 "서빙 소프트웨어 자체가 비용 효율에 직접 영향을 준다"는 이 축의 기존 판단을 잇는 사례입니다. (sources/2026-10/2026-10-09.md)
 - (2026-10-18 갱신) Claude Opus 5.5의 Fast mode가 research preview를 벗어나 정식 출시(GA)됐습니다(2026-10-15, 원문 확인). 더 이상 접근 신청이나 베타 헤더가 필요 없고, 모든 사용량 tier에 기본 rate limit이 생겼습니다(Microsoft Foundry 경로도 포함). Claude Opus 5·Opus 4.8의 Fast mode는 여전히 research preview로 남습니다. Evaluation Questions의 "reasoning effort와 context 길이를 조절할 때 비용 대비 품질 곡선" 실험이 비용·속도를 함께 고려하는 실무 단계로 넘어가고 있다는 신호입니다. (sources/2026-10/2026-10-16.md#claude-developer-platform-릴리스-노트2026-10-15--claude-opus-55-fast-mode-정식-출시베타-해제-compliance-api에-사용자별-커스텀-지침-조회-기능-추가)
 - (2026-10-25 갱신) vLLM v0.32.0(2026-10-18, 원문 확인)이 breaking change 중심으로 공개됐습니다. Python 3.10 지원 종료, 기본 CORS origin을 `*`에서 none으로 제한, cascade attention 제거와 함께 신규 구조화 디코딩 엔드포인트(`POST /v1/systemone`), 저정밀 KV cache 확대(NVFP4), Model Runner V2의 GPU n-gram speculator·Elastic EP가 추가됐습니다. v0.30.0(9/22)→v0.31.0(10/5)→v0.32.0(10/18)으로 월 단위 cadence가 이어지고 있어, Evaluation Questions의 "harness 설계가 비용을 좌우하는가" 질문에서 서빙 엔진의 업그레이드 추적 비용 자체가 과소평가되기 쉽다는 관찰을 더합니다. (sources/2026-10/2026-10-23.md#vllm-v0320-공개--python-310-지원-종료-cors-기본값-변경-model-runner-v2-확장)
+- (2026-11-08 갱신) vLLM v0.33.0(태그 v0.33.0rc3, 2026-11-02, 원문 확인)이 CUDA 13.0 단일화(CUDA 12.9 wheel·이미지 지원 종료)와 ROCm 10.0 기본 이미지 전환, Medusa·MLP speculator·레거시 Ray compiled-graph executor 제거를 포함한 breaking change 다수와 함께 공개됐습니다. 이틀 뒤 llama.cpp v0.9.0(2026-11-04, 원문 확인)도 OCP FP8 E4M3 텐서 타입 지원과 ggml v0.29.0 기반 NCCL 멀티노드 텐서 병렬화를 추가해, 두 주요 서빙 스택이 같은 주에 나란히 하드웨어 활용 범위를 넓히면서도 자체 호스팅 쪽에 드라이버·의존성 업그레이드 부담을 지웠습니다. "서빙 소프트웨어 업그레이드 추적 비용이 과소평가되기 쉽다"는 위 관찰을 한 번 더 뒷받침합니다. (sources/2026-11/2026-11-03.md, sources/2026-11/2026-11-05.md)
 
 ## Notable Systems
 
@@ -27,6 +28,8 @@ last_reviewed: 2026-10-25
 - llama.cpp v0.4.1 (2026-09-14 태그): Maple 20B-A1B·Tencent Hy 4·Spark2.5 모델 지원 추가, 내부 ggml 라이브러리를 v0.24.0으로 갱신, 구조화된 JSONL 로깅과 서버 자식 프로세스 관리 개선. 원문(GitHub 릴리스 페이지)을 직접 확인했습니다. (sources/2026-09/2026-09-15.md)
 - vLLM v0.31.0 (2026-10-05 태그): `vllm preload` 캐시 데몬, 실험적 CRIU 엔진 스냅샷, DeepSeek-V4.1-Flash용 FlashMLA 어텐션 기본화, Model Runner V2의 드래프트 모델 투기적 디코딩(LiLiCorr 드래프터, Gemma4용 DSpark 적응형 검증). 717개 커밋·307명 기여자 참여. 원문(GitHub 릴리스 페이지)을 직접 확인했습니다. (sources/2026-10/2026-10-09.md)
 - vLLM v0.32.0 (2026-10-18 태그): Python 3.10 지원 종료·CORS 기본값(`*`→none)·cascade attention 제거 등 breaking change, 신규 구조화 디코딩 엔드포인트 `POST /v1/systemone`, NVFP4 저정밀 KV cache, Model Runner V2의 GPU n-gram speculator·Elastic EP. 814개 커밋·363명 기여자 참여. 원문(GitHub 릴리스 페이지)을 직접 확인했습니다. (sources/2026-10/2026-10-23.md)
+- vLLM v0.33.0 (태그 v0.33.0rc3, 2026-11-02): CUDA 13.0 단일화, ROCm 10.0 기본 전환, Medusa·MLP speculator·레거시 Ray compiled-graph executor 제거, `/v1/decisions` 엔드포인트, late chunking 기반 token embedding, NIXL 1.5+ 요구. 927개 커밋·389명 기여자(122명 신규) 참여. 원문(GitHub 릴리스 페이지)을 직접 확인했습니다. (sources/2026-11/2026-11-03.md)
+- llama.cpp v0.9.0 (2026-11-04 태그): OCP FP8 E4M3 텐서 타입 지원, `flash_attn_ext_rows` op로 멀티시퀀스 KV 캐시 성능 개선, ggml v0.29.0 갱신(NCCL 기반 멀티노드 텐서 병렬화), Mistral Large 4·Gemma 4 등 신규 모델 지원. 이전 named 릴리스는 v0.8.0. 원문(GitHub 릴리스 페이지)을 직접 확인했습니다. (sources/2026-11/2026-11-05.md)
 
 ## Watch Items
 
@@ -52,6 +55,8 @@ last_reviewed: 2026-10-25
 - [vLLM v0.31.0 릴리스](../sources/2026-10/2026-10-09.md#vllm-v0310-릴리스--vllm-preload로-재시작-가속-deepseek-v41-flash-성능-최적화-model-runner-v2-드래프트-모델-투기적-디코딩)
 - [Claude Opus 5.5 Fast mode GA](../sources/2026-10/2026-10-16.md#claude-developer-platform-릴리스-노트2026-10-15--claude-opus-55-fast-mode-정식-출시베타-해제-compliance-api에-사용자별-커스텀-지침-조회-기능-추가)
 - [vLLM v0.32.0 릴리스](../sources/2026-10/2026-10-23.md#vllm-v0320-공개--python-310-지원-종료-cors-기본값-변경-model-runner-v2-확장)
+- [vLLM v0.33.0 릴리스](../sources/2026-11/2026-11-03.md#vllm-v0330태그-v0330rc3-배포--cuda-130-단일화-medusa레거시-ray-실행기-제거-등-breaking-change-다수)
+- [llama.cpp v0.9.0 릴리스](../sources/2026-11/2026-11-05.md#llamacpp-v090-배포--ocp-fp8-양자화-mistral-large-4gemma-4-지원-ggml-v0290-기반-멀티노드-텐서-병렬화)
 
 ## Open Questions
 
