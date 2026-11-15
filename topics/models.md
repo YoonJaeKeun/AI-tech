@@ -1,7 +1,7 @@
 ---
 title: "Models"
 topic: models
-last_reviewed: 2026-10-11
+last_reviewed: 2026-11-15
 ---
 
 # Models
@@ -31,6 +31,7 @@ last_reviewed: 2026-10-11
 - (2026-09-27 추가) Anthropic Claude Opus 5.5(2026-09-22 공개, 원문 확인): Claude Fable 5.1급 성능을 Opus 5 대비 약 40% 낮은 비용(입력 $4/출력 $20 per Mtok, 캐시 읽기 $0.20)에 제공하며 처리 속도는 30% 이상 빠릅니다. Terminal-Bench 4.0 66.4%, GDPval-AA v2.1 1846 Elo, OSWorld 2.0 81.8%를 제시했고, METR·Frontier Design 등 외부 평가자의 사전 검증을 거쳤다고 밝혔습니다. (sources/2026-09/2026-09-23.md)
 - (2026-10-04 추가) Anthropic Claude Sonnet 5.5(2026-09-28 공개, 원문 확인): Sonnet 5와 동일 가격(입력 $2/출력 $10 per Mtok, 캐시 읽기 $0.20)에 출력 생성이 30% 이상 빨라지고 작업당 비용은 최대 30% 낮아졌다고 밝힙니다. Terminal-Bench 4.0 70.6%(Sonnet 5는 10.3%), CursorBench 4.0 55.5%(Opus 5.5와 2점 차), GDPval-AA v2.1 1844, OSWorld 2.1 80.1%를 제시했습니다. Watchlist의 "Claude Sonnet 5의 실제 agentic coding 성능과 비용 효율" 항목이 다음 세대로 이어지는 직접 후속 사례입니다. (sources/2026-09/2026-09-29.md)
 - (2026-10-11 추가) Anthropic Claude Haiku 5.5(2026-10-07 공개, 원문 확인): Haiku 계열 최초로 조절 가능한 effort(Low~Max)를 지원하는 가장 저렴·빠른 소형 모델입니다. Haiku 4.5 대비 평균 약 75% 저렴하다고 밝혔으나(10만 토큰까지 90%, 그 이상 50%), 새 tokenizer로 토큰 사용량 자체가 약간 늘어 절감폭이 일부 상쇄됩니다. Terminal-Bench 4.0 39.2%(Haiku 4.5는 0.0%, Sonnet 5.5는 70.6%)로 Anthropic은 복잡한 agentic coding에는 여전히 Sonnet 5.5·Opus 5.5가 낫다고 명시했습니다. 소형 모델에까지 effort 조절이 내려온 것은 Trial의 "추론 effort를 조절하는 모델 선택 전략"을 모델 선택 레이어에서 재확인하는 사례입니다. (sources/2026-10/2026-10-08.md)
+- (2026-11-15 추가) Anthropic Claude Fable 5.2·Claude Mythos 5.2 공개(2026-11-09, 원문 확인): 같은 기반 모델을 공유하며 접근 권한으로만 구분됩니다. Fable은 사이버·생물 안전장치를 갖춰 모든 사용자에게 공개되고, Mythos는 Cyber/Life Sciences Verification Program을 통과한 검증된 기관에만 제공됩니다. 가격은 표준 입력 $8/출력 $40 per Mtok, Fast mode는 최대 2.5배 빠르고 $16/$80입니다. 벤치마크에서 Fable 5.2는 Opus 5.5·GPT-6 Astra·Gemini 4 Carbon을 FrontierCode 2.0(agentic coding, Xhigh) 49.1%, FrontierSWE v2 69.9%, Terminal-Bench-Science 0.1 74.6%, Remote Labor Index 41.3% 등 대부분의 agentic coding·과학 벤치마크에서 앞섰다고 보고됐습니다(Anthropic 자체 보고, 발표 당일이라 제3자 독립 검증은 아직 없음). Assess의 "open-weight 모델의 폐쇄형 frontier 모델 추격" 판단과는 반대 방향(폐쇄형 frontier가 다시 격차를 벌림)의 신호입니다. Mythos 5.2는 CVE Rediscovery 89.6%, de novo binder design 85.1% 같은 이중용도 벤치마크 점수가 오르는 동시에 안전장치 block은 Fable 5.1 대비 약 55%(사이버 60%, 생물 40%) 줄어, Assess의 "frontier science, biology, cyber capability 평가: 유용성과 오용 가능성이 동시에 커지는 영역" 판단의 구체 사례입니다. (sources/2026-11/2026-11-10.md)
 
 ## Key Concepts
 
@@ -55,6 +56,7 @@ last_reviewed: 2026-10-11
 - [Claude Science 9-loop 산란 진폭 계산](../sources/2026-09/2026-09-28.md#anthropic-claude-science가-n4-super-yang-mills-이론의-9-loop-산란-진폭을-독립적으로-계산--물리학자-dixon이-검증)
 - [Claude Sonnet 5.5](../sources/2026-09/2026-09-29.md#anthropic-claude-sonnet-55-공개--sonnet-5-동일-가격에-출력-30-빠르고-작업당-비용-최대-30-절감)
 - [Claude Haiku 5.5](../sources/2026-10/2026-10-08.md#anthropic-claude-haiku-55-공개--가장-저렴빠른-소형-모델-haiku-계열-최초로-조절-가능한-effortlowmax-지원)
+- [Claude Fable 5.2·Claude Mythos 5.2](../sources/2026-11/2026-11-10.md#anthropic-claude-fable-52claude-mythos-52-공개--코딩과학사이버-벤치마크-대폭-향상-안전장치-block-55-감소)
 
 ## Open Questions
 

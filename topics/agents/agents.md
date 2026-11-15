@@ -1,7 +1,7 @@
 ---
 title: "Agents"
 topic: agents
-last_reviewed: 2026-11-08
+last_reviewed: 2026-11-15
 ---
 
 # Agents
@@ -57,6 +57,9 @@ last_reviewed: 2026-11-08
 - (2026-11-08 추가) Claude Code v2.1.314/316(10-30/31)에서 `permissions.blockWritesOutsideWorkingDirectories`(모든 권한 모드에서 Write·Edit·NotebookEdit이 작업 디렉터리 밖 경로를 거부)가 추가됐습니다. Hold의 "감사 로그와 rollback 전략이 없는 완전 자율 업무 실행" 경계를 구체화하는 운영 통제이며, 이 저장소가 세션별 scratchpad 경로를 강제하는 운영 방식과 같은 방향입니다. 같은 배치에서 VS Code·Desktop의 idle compaction(200K 토큰 초과 대화를 유휴 시 자동 요약)이 추가돼 Adopt의 LLM 전처리·후처리 경계 설계가 다루는 컨텍스트 과다 실패를 줄였고, Opus 4.8 fast mode가 2026-10-30부로 deprecated(2026-11-30 제거 예정, Opus 5.5 마이그레이션 권고) 처리돼 구형 모델 경로 폐기의 첫 구체 사례가 나왔습니다. (sources/2026-11/2026-11-02.md)
 - (2026-11-08 추가) Claude Code v2.1.317(11-03)에서 요청하지 않은 커넥터가 붙은 예약 작업에 `/schedule`이 경고를 표시하고, 웹·셸 도구 호출이 계정 이메일을 외부로 보낼 수 있는 경우 사전 확인을 요구하도록 바뀌었습니다. 이 저장소가 세션 환경에서 이미 따르는 "userEmail은 명시적 요청 없이 외부 서비스로 보내지 않는다"는 운영 규칙과 같은 방향의 플랫폼 가드레일로, Hold의 자율 실행 경계·Adopt의 "사람 승인 절차가 있는 저장소 작업"과 맞닿습니다. 같은 릴리스의 Agent SDK hook `onFailure:"block"`(콜백 실패 시 action 차단)은 hook을 로깅이 아닌 실행 중단 지점으로 쓸 수 있게 한 변경이고, gateway 비용 리포트 엔드포인트(`GET /v1/organizations/analytics/cost`) 추가는 조직 단위 비용 가시성이 플랫폼 기능으로 내려오는 신호입니다. (sources/2026-11/2026-11-04.md)
 - (2026-11-08 추가) Claude Code v2.1.318(11-04)에서 클라우드 세션이 저장소를 고르지 않고 시작하는 "No repository" 옵션이 Anthropic 호스팅 환경에 추가돼, Adopt의 "제한된 범위의 코딩 에이전트" 판단과 맞물려 코드 저장소 작업 外 범용 에이전트 실행 用途가 플랫폼 차원에서 분리되는 신호를 보였습니다. gateway `mantle` upstream의 `assume_role` 추가(다른 AWS 계정 role 사용, 개발자별 AWS 비용 귀속)는 Infra/Cost 축의 비용 가시성 흐름이 "조직 단위"에서 "개발자 단위"로 더 좁혀지는 사례입니다. 공유 네트워크 홈 디렉터리에서 설정/로그인 파일이 삭제·공백화되는 문제 다수 수정도 포함됐습니다. (sources/2026-11/2026-11-05.md)
+- (2026-11-15 추가) "승인 절차를 설정으로 건너뛸 수 있게 하는 기능"이 이번 주에도 이어졌습니다. Claude Code v2.1.319(11-06)가 `permissions.denyInsteadOfPrompting`(권한 프롬프트로 대기하는 대신 자동 거부하고 턴을 계속 진행)을 추가했고, 텔레메트리/feature flag가 꺼진 auto mode는 더 이상 내장 분류기로 조용히 폴백하지 않고 명시적으로 묻거나 거부하도록 바뀌었습니다. 같은 릴리스에서 권한 우회 보안 수정 4건(Bash 환경변수 접두사 조작, `sed` 명령의 accept-edits/auto mode 우회, worktree 생성 시 샌드박스 탈출, 인용된 단어가 포함된 Bash deny/ask 규칙 누락)도 함께 고쳐졌습니다. v2.1.321(11-09)은 Claude가 작성한 mod와 mod 자신의 도구 호출이 auto/bypass 모드에서 권한 프롬프트 없이 자동 허용되도록 바꿨습니다(`dontAsk` 모드는 제외). Hold의 "감사 로그와 rollback 전략이 없는 완전 자율 업무 실행" 경계와 직접 맞닿으므로, 이 저장소의 자동화 실행에서는 두 설정 모두 기본값(비활성)을 유지해야 합니다. 다만 같은 주 v2.1.323(11-12)은 반대 방향으로 `/security-review` 실행 전 확인 요청을 추가하고, 비밀정보로 보이는 규칙은 "don't ask again"으로 저장되지 않도록 막아, 하네스가 한 방향으로만 움직이지 않고 기능별로 자동화와 통제를 번갈아 조정하고 있음을 보여줍니다. (sources/2026-11/2026-11-09.md, sources/2026-11/2026-11-10.md, sources/2026-11/2026-11-13.md)
+- (2026-11-15 추가) Claude Code v2.1.323(11-12)이 실험적 opt-in "Code Mode"(모델이 개별 tool-call을 하나씩 내보내는 대신 JavaScript 코드를 작성해 도구를 호출)를 추가했습니다. 조직이 비활성화할 수 있는 opt-in 상태로 공개돼, Scaffolding 개념에 해당하는 새 실행 설계 축입니다. 같은 릴리스는 인식되지 않는 모델 ID의 기본 컨텍스트 윈도우를 200K에서 1M으로 올렸고(`CLAUDE_CODE_DISABLE_1M_CONTEXT=1`로 되돌릴 수 있음), plugin.json에 버전 호환성 `engines` 필드를 추가했습니다. 컨텍스트 기본값을 키우는 선택은 Adopt의 "LLM 전처리·후처리 경계를 명시적으로 설계하기" 판단과 맞닿는, 컴팩션 빈도·비용에 직접 영향을 주는 전처리 경계 설계 사례입니다. (sources/2026-11/2026-11-13.md)
+- (2026-11-15 추가) MCP가 SEP-3398에 따라 스펙 릴리스를 연 2회(매년 3월·9월 마지막 화요일) 고정 주기로 운영하기로 했습니다(2026-11-11 발표, 다음 목표 2027-03-30). 준비가 안 된 제안은 전체 스펙을 지연시키지 않고 다음 릴리스로 미뤄집니다. Watchlist의 "MCP 사양과 거버넌스" 항목에 "릴리스 거버넌스까지 기업형 캘린더로 고정됐다"는 구체적 후속 데이터를 더합니다. 같은 블로그가 큰 파일을 모델 컨텍스트 밖에서 클라이언트-서버-제3자 스토리지 간 직접 주고받는 실험적 확장안(`io.modelcontextprotocol/files`, 2026-11-10)도 공개했습니다. credentials `omit`/`include` 구분, 리다이렉트 거부, 다운로드 파일을 다이제스트가 맞아도 신뢰하지 말라는 명시는 Adopt의 "LLM 전처리·후처리 경계를 명시적으로 설계하기" 판단과도 맞닿는 프로토콜 레벨 설계입니다. 아직 참조 구현이 없는 실험 단계입니다. (sources/2026-11/2026-11-12.md)
 
 ## Patterns
 
@@ -129,6 +132,12 @@ last_reviewed: 2026-11-08
 - [Claude Code v2.1.314/v2.1.316](../../sources/2026-11/2026-11-02.md#claude-code-v21314v21316-배포--작업-디렉터리-밖-쓰기-차단-옵션-idle-compaction-opus-48-fast-mode-폐지-예고)
 - [Claude Code v2.1.317](../../sources/2026-11/2026-11-04.md#claude-code-v21317-배포--미승인-커넥터-경고-이메일-유출-전-확인-agent-sdk-onfailure-block-gateway-비용-리포트-api)
 - [Claude Code v2.1.318](../../sources/2026-11/2026-11-05.md#claude-code-v21318-배포--클라우드-세션-no-repository-옵션-mantle-assume_role-기반-조직별-aws-비용-귀속-공유-네트워크-홈-설정-유실-방지)
+- [Claude Code v2.1.319](../../sources/2026-11/2026-11-09.md#claude-code-v21319-배포--permissionsdenyinsteadofprompting-mcp-작업-자동-백그라운드화-auto-mode-분류기-폴백-제거-권한-우회-보안-수정-다수)
+- [Claude Code v2.1.321](../../sources/2026-11/2026-11-10.md#claude-code-v21321-배포--claude-fable-52를-기본-fable-모델로-반영-mod-권한-자동-허용으로-변경-claude-remote-control---settings-추가)
+- [MCP Release Cycle(SEP-3398)](../../sources/2026-11/2026-11-12.md#a-more-predictable-release-cycle-for-mcp--sep-3398-기반-연-2회3월9월-마지막-화요일-고정-릴리스-주기-도입)
+- [MCP File Uploads/Downloads 제안](../../sources/2026-11/2026-11-12.md#exploring-file-uploads-and-downloads-in-mcp--파일-바이트를-모델-컨텍스트-밖에서-주고받는-실험적-확장안iomodelcontextprotocolfiles-공개)
+- [Claude Code v2.1.322](../../sources/2026-11/2026-11-12.md#claude-code-v21322-배포--vertex-fast-mode를-globaluseu-리전까지-확대-거부-시-표준-속도로-자동-폴백)
+- [Claude Code v2.1.323](../../sources/2026-11/2026-11-13.md#claude-code-v21323-배포--실험적-code-modeclaude가-도구-호출을-js-코드로-작성-opt-in-추가-pluginjson에-버전-호환성-engines-필드-도입)
 
 ## Open Questions
 
