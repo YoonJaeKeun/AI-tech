@@ -1,7 +1,7 @@
 ---
 title: "Agents"
 topic: agents
-last_reviewed: 2026-11-15
+last_reviewed: 2026-11-22
 ---
 
 # Agents
@@ -60,6 +60,8 @@ last_reviewed: 2026-11-15
 - (2026-11-15 추가) "승인 절차를 설정으로 건너뛸 수 있게 하는 기능"이 이번 주에도 이어졌습니다. Claude Code v2.1.319(11-06)가 `permissions.denyInsteadOfPrompting`(권한 프롬프트로 대기하는 대신 자동 거부하고 턴을 계속 진행)을 추가했고, 텔레메트리/feature flag가 꺼진 auto mode는 더 이상 내장 분류기로 조용히 폴백하지 않고 명시적으로 묻거나 거부하도록 바뀌었습니다. 같은 릴리스에서 권한 우회 보안 수정 4건(Bash 환경변수 접두사 조작, `sed` 명령의 accept-edits/auto mode 우회, worktree 생성 시 샌드박스 탈출, 인용된 단어가 포함된 Bash deny/ask 규칙 누락)도 함께 고쳐졌습니다. v2.1.321(11-09)은 Claude가 작성한 mod와 mod 자신의 도구 호출이 auto/bypass 모드에서 권한 프롬프트 없이 자동 허용되도록 바꿨습니다(`dontAsk` 모드는 제외). Hold의 "감사 로그와 rollback 전략이 없는 완전 자율 업무 실행" 경계와 직접 맞닿으므로, 이 저장소의 자동화 실행에서는 두 설정 모두 기본값(비활성)을 유지해야 합니다. 다만 같은 주 v2.1.323(11-12)은 반대 방향으로 `/security-review` 실행 전 확인 요청을 추가하고, 비밀정보로 보이는 규칙은 "don't ask again"으로 저장되지 않도록 막아, 하네스가 한 방향으로만 움직이지 않고 기능별로 자동화와 통제를 번갈아 조정하고 있음을 보여줍니다. (sources/2026-11/2026-11-09.md, sources/2026-11/2026-11-10.md, sources/2026-11/2026-11-13.md)
 - (2026-11-15 추가) Claude Code v2.1.323(11-12)이 실험적 opt-in "Code Mode"(모델이 개별 tool-call을 하나씩 내보내는 대신 JavaScript 코드를 작성해 도구를 호출)를 추가했습니다. 조직이 비활성화할 수 있는 opt-in 상태로 공개돼, Scaffolding 개념에 해당하는 새 실행 설계 축입니다. 같은 릴리스는 인식되지 않는 모델 ID의 기본 컨텍스트 윈도우를 200K에서 1M으로 올렸고(`CLAUDE_CODE_DISABLE_1M_CONTEXT=1`로 되돌릴 수 있음), plugin.json에 버전 호환성 `engines` 필드를 추가했습니다. 컨텍스트 기본값을 키우는 선택은 Adopt의 "LLM 전처리·후처리 경계를 명시적으로 설계하기" 판단과 맞닿는, 컴팩션 빈도·비용에 직접 영향을 주는 전처리 경계 설계 사례입니다. (sources/2026-11/2026-11-13.md)
 - (2026-11-15 추가) MCP가 SEP-3398에 따라 스펙 릴리스를 연 2회(매년 3월·9월 마지막 화요일) 고정 주기로 운영하기로 했습니다(2026-11-11 발표, 다음 목표 2027-03-30). 준비가 안 된 제안은 전체 스펙을 지연시키지 않고 다음 릴리스로 미뤄집니다. Watchlist의 "MCP 사양과 거버넌스" 항목에 "릴리스 거버넌스까지 기업형 캘린더로 고정됐다"는 구체적 후속 데이터를 더합니다. 같은 블로그가 큰 파일을 모델 컨텍스트 밖에서 클라이언트-서버-제3자 스토리지 간 직접 주고받는 실험적 확장안(`io.modelcontextprotocol/files`, 2026-11-10)도 공개했습니다. credentials `omit`/`include` 구분, 리다이렉트 거부, 다운로드 파일을 다이제스트가 맞아도 신뢰하지 말라는 명시는 Adopt의 "LLM 전처리·후처리 경계를 명시적으로 설계하기" 판단과도 맞닿는 프로토콜 레벨 설계입니다. 아직 참조 구현이 없는 실험 단계입니다. (sources/2026-11/2026-11-12.md)
+- (2026-11-22 추가) Claude Code v2.1.325~329(11-13~11-19)가 거의 매일 단위로 이어지며 "하네스가 기능별로 자동화와 통제를 번갈아 조정한다"는 기존 관찰이 계속됐습니다. v2.1.325는 샌드박스된 Bash 명령의 기본 자동 허용을 되돌리고 스케줄 작업·`/loop`가 권한이 필요한 스킬을 실행하기 전 확인을 요청하도록 바꿨습니다. v2.1.326은 실험적 Code Mode를 agent teams 설정까지 확장하면서도 Cowork HIPAA 조직의 터미널/VS Code 세션에 Auto mode를 기본값으로 켰고, 파일 도구가 `.credentials.json` 같은 자격증명 파일 쓰기를 거부하도록 바꿨습니다. v2.1.327은 `/install-github-app` 실행 전 확인창과 `claude mcp add-json <name> -`로 MCP 서버 토큰을 커맨드라인 인자에 노출하지 않고 등록하는 방법을 추가했고, Claude in Chrome의 일부 credential 파일 업로드를 차단했습니다. v2.1.328/329는 같은 날 auto mode를 Bedrock·Google Cloud Agent Platform·Microsoft Foundry·Claude apps gateway로 확산시키는 동시에(자동화 확대), 신뢰 다이얼로그에 hook이 어디서 선언됐는지 표시하는 경고를 추가했습니다(통제 강화). (sources/2026-11/2026-11-16.md, sources/2026-11/2026-11-17.md, sources/2026-11/2026-11-19.md, sources/2026-11/2026-11-20.md)
+- (2026-11-22 추가) MCP 공식 레퍼런스 서버(`mcp-server-git`, `server-filesystem`, `server-everything` 등)에서 보안 패치가 두 번 연속(v2.4.0 11-11, v2.5.0 11-18) 나왔고, v2.5.0은 취약점 8건을 수정했습니다. Trial의 "원격 sandbox 또는 격리된 terminal 기반 에이전트 실행"이 이런 레퍼런스 구현에 의존한다면, 반복되는 보안 패치 자체를 그 신뢰 판단에 포함해야 합니다. (sources/2026-11/2026-11-19.md)
 
 ## Patterns
 
@@ -138,6 +140,11 @@ last_reviewed: 2026-11-15
 - [MCP File Uploads/Downloads 제안](../../sources/2026-11/2026-11-12.md#exploring-file-uploads-and-downloads-in-mcp--파일-바이트를-모델-컨텍스트-밖에서-주고받는-실험적-확장안iomodelcontextprotocolfiles-공개)
 - [Claude Code v2.1.322](../../sources/2026-11/2026-11-12.md#claude-code-v21322-배포--vertex-fast-mode를-globaluseu-리전까지-확대-거부-시-표준-속도로-자동-폴백)
 - [Claude Code v2.1.323](../../sources/2026-11/2026-11-13.md#claude-code-v21323-배포--실험적-code-modeclaude가-도구-호출을-js-코드로-작성-opt-in-추가-pluginjson에-버전-호환성-engines-필드-도입)
+- [Claude Code v2.1.325](../../sources/2026-11/2026-11-16.md#claude-code-v21325-배포--bash-샌드박스-자동-허용-되돌림-스케줄-작업loop의-스킬-실행-사전-확인-추가)
+- [Claude Code v2.1.326](../../sources/2026-11/2026-11-17.md#claude-code-v21326-배포--code-mode를-agent-teams로-확장-cowork-hipaa-조직은-auto-mode-기본값-자격증명-파일-쓰기-거부)
+- [Claude Code v2.1.327](../../sources/2026-11/2026-11-19.md#claude-code-v21327-배포--github-app-연결-확인창-mcp-토큰-비노출-등록-credential-파일-업로드-차단)
+- [MCP 레퍼런스 서버 보안 패치(v2.5.0/v2.4.0)](../../sources/2026-11/2026-11-19.md#mcp-레퍼런스-서버-보안-패치-연속--servers-v2502026-11-18-v2402026-11-11)
+- [Claude Code v2.1.328/v2.1.329](../../sources/2026-11/2026-11-20.md#claude-code-v21328--v21329-배포--auto-mode-멀티플랫폼-확산-훅-선언-위치-노출하는-신뢰-경고-추가)
 
 ## Open Questions
 

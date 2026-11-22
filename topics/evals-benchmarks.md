@@ -1,7 +1,7 @@
 ---
 title: "Evals / Benchmarks"
 topic: evals-benchmarks
-last_reviewed: 2026-09-27
+last_reviewed: 2026-11-22
 ---
 
 # Evals / Benchmarks
@@ -13,6 +13,7 @@ AI 모델과 에이전트의 성능을 어떻게 측정할지 정리하는 주�
 - 전통적인 QA, 시험, 단일 정답 benchmark는 빠르게 포화되고 있습니다.
 - 2026년 현재 중요한 평가는 실제 업무에 가까운 coding, terminal, computer use, long-horizon task, clinical workflow 평가입니다.
 - benchmark 점수는 모델 선택의 시작점일 뿐이며, 실제 업무에서는 failure mode, 비용, 복구 가능성, auditability가 더 중요할 수 있습니다.
+- (2026-11-22 추가) Anthropic이 "Building Strong Safety Evaluations"(2026-11-13, 원문 확인)에서 안전성 평가에 심리학 재현성 위기 이후 개혁(사전등록, grader 보정, 불확실성 보고)을 적용하자는 방법론을 제안했습니다. 핵심 권고는 데이터를 보기 전에 구성개념(construct)·지표·비교를 사전등록할 것, grader를 human label로 검증하고 grader 간 합치도를 human-human 합치도와 비교할 것, 결과를 신뢰구간으로 보고하고 다중비교를 보정할 것입니다. 아래 Evaluation Questions의 "결과가 재현 가능하고 감사 가능한가?"에 구체적인 체크리스트를 더합니다. 자사 안전성 평가 관행을 설명·옹호하는 성격의 글이라는 점은 감안해야 합니다. (sources/2026-11/2026-11-16.md)
 
 ## Benchmarks To Track
 
@@ -37,6 +38,7 @@ AI 모델과 에이전트의 성능을 어떻게 측정할지 정리하는 주�
 - [METR Frontier Risk Report](../sources/2026-07/2026-07-09.md#metr-frontier-risk-report-february-to-march-2026)
 - [Stanford AI Index 2026](../sources/2026-07/2026-07-09.md#the-2026-ai-index-report)
 - [State of Clinical AI Report 2026](../sources/2026-07/2026-07-09.md#state-of-clinical-ai-report-2026)
+- [Anthropic, "Building Strong Safety Evaluations"](../sources/2026-11/2026-11-16.md#anthropic-building-strong-safety-evaluations-공개--심리학-재현성-위기식-개혁을-안전성-평가에-적용하자는-방법론-제안)
 
 ## Open Questions
 
